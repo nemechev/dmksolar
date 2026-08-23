@@ -1,0 +1,56 @@
+import { MessageCircle, Send, Phone } from "lucide-react";
+import { useState } from "react";
+
+export function MessengersFAB() {
+  const [open, setOpen] = useState(false);
+  const items = [
+    {
+      label: "Telegram",
+      href: "https://t.me/ecotech_ua",
+      color: "bg-[#229ED9]",
+      icon: <Send className="w-5 h-5" />,
+    },
+    {
+      label: "Viber",
+      href: "viber://chat?number=%2B380967067743",
+      color: "bg-[#7360F2]",
+      icon: <MessageCircle className="w-5 h-5" />,
+    },
+    {
+      label: "WhatsApp",
+      href: "https://wa.me/380967067743",
+      color: "bg-[#25D366]",
+      icon: <MessageCircle className="w-5 h-5" />,
+    },
+    {
+      label: "Call",
+      href: "tel:+380967067743",
+      color: "bg-primary",
+      icon: <Phone className="w-5 h-5" />,
+    },
+  ];
+  return (
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+      {open &&
+        items.map((it) => (
+          <a
+            key={it.label}
+            href={it.href}
+            target="_blank"
+            rel="noreferrer"
+            className={`${it.color} text-white shadow-lg rounded-full pl-4 pr-5 py-2.5 flex items-center gap-2 text-sm font-medium hover:brightness-110 transition`}
+          >
+            {it.icon}
+            <span>{it.label}</span>
+          </a>
+        ))}
+      <button
+        onClick={() => setOpen(!open)}
+        aria-label="Messengers"
+        className="w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-xl flex items-center justify-center hover:brightness-110 transition"
+      >
+        <MessageCircle className="w-6 h-6" />
+      </button>
+    </div>
+  );
+}
