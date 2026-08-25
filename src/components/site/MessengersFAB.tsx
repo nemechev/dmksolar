@@ -1,12 +1,13 @@
 import { MessageCircle, Send, Phone } from "lucide-react";
 import { useState } from "react";
+import { siteContacts, socialLinks } from "@/config/site";
 
 export function MessengersFAB() {
   const [open, setOpen] = useState(false);
   const items = [
     {
       label: "Telegram",
-      href: "https://t.me/ecotech_ua",
+      href: socialLinks.telegram,
       color: "bg-[#229ED9]",
       icon: <Send className="w-5 h-5" />,
     },
@@ -18,13 +19,13 @@ export function MessengersFAB() {
     },
     {
       label: "WhatsApp",
-      href: "https://wa.me/380967067743",
+      href: socialLinks.whatsapp,
       color: "bg-[#25D366]",
       icon: <MessageCircle className="w-5 h-5" />,
     },
     {
       label: "Call",
-      href: "tel:+380967067743",
+      href: siteContacts.phones[0].href,
       color: "bg-primary",
       icon: <Phone className="w-5 h-5" />,
     },

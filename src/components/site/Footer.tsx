@@ -1,6 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
-import { Music2, Send, Youtube, Phone, Mail, MapPin } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Music2,
+  Phone,
+  Send,
+  Youtube,
+} from "lucide-react";
 import logo from "@/assets/dmk-solar-logo.png";
 import { siteContacts, socialLinks } from "@/config/site";
 
@@ -120,6 +130,33 @@ export function Footer() {
               className="opacity-70 hover:text-primary"
             >
               <Send className="w-5 h-5" />
+            </a>
+            <a
+              href={socialLinks.instagram}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="opacity-70 hover:text-primary"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a
+              href={socialLinks.facebook}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+              className="opacity-70 hover:text-primary"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a
+              href={socialLinks.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp"
+              className="opacity-70 hover:text-primary"
+            >
+              <MessageCircle className="w-5 h-5" />
             </a>
             <a
               href={socialLinks.tiktok}

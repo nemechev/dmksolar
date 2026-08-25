@@ -201,21 +201,6 @@ function Home() {
         </div>
       </Section>
 
-      {/* PARTNERS */}
-      <Section eyebrow={t("home.partners.sub")} title={t("home.partners.title")}>
-        <p className="text-muted-foreground max-w-2xl mb-8">{t("home.partners.desc")}</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {["JA Solar", "Longi", "Canadian Solar", "Huawei", "SolarEdge", "Fronius"].map((p) => (
-            <div
-              key={p}
-              className="h-20 rounded-lg bg-card flex items-center justify-center border border-border text-sm font-semibold text-muted-foreground"
-            >
-              {p}
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* CTA */}
       <section className="bg-dark text-dark-foreground">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid gap-10 lg:grid-cols-2 items-center">

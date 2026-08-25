@@ -10,6 +10,9 @@ export const siteContacts = {
 // Social URLs are centralized here so they can be replaced without editing UI components.
 export const socialLinks = {
   telegram: "https://t.me/dmksolar",
+  instagram: "https://www.instagram.com/dmksolar?igsi=d3I2aHBhd3V6ZzZi&utm_source=qr",
+  facebook: "https://www.facebook.com/share/1DX8YRGvr8/?mibextid=wwXIfr",
+  whatsapp: "https://wa.me/qr/AZSVSF7Q3F7SE1",
   tiktok: "https://www.tiktok.com/@dmksolar",
   youtube: "https://youtube.com/@dmksolar?si=98Q7p7Mc8PXgcBbv",
 } as const;

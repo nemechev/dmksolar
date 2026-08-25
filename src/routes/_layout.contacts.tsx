@@ -1,5 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Music2, Phone, Send, Youtube } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Music2,
+  Phone,
+  Send,
+  Youtube,
+} from "lucide-react";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Section } from "@/components/site/Section";
 import { siteContacts, socialLinks } from "@/config/site";
@@ -59,6 +69,9 @@ function Contacts() {
   const { t } = useI18n();
   const socials = [
     { icon: Send, label: "Telegram", href: socialLinks.telegram },
+    { icon: Instagram, label: "Instagram", href: socialLinks.instagram },
+    { icon: Facebook, label: "Facebook", href: socialLinks.facebook },
+    { icon: MessageCircle, label: "WhatsApp", href: socialLinks.whatsapp },
     { icon: Music2, label: "TikTok", href: socialLinks.tiktok },
     { icon: Youtube, label: "YouTube", href: socialLinks.youtube },
   ] as const;
