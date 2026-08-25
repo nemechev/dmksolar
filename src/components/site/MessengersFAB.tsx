@@ -1,4 +1,4 @@
-import { MessageCircle, Send, Phone } from "lucide-react";
+import { Facebook, Instagram, MessageCircle, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { siteContacts, socialLinks } from "@/config/site";
 
@@ -24,8 +24,26 @@ export function MessengersFAB() {
       icon: <MessageCircle className="w-5 h-5" />,
     },
     {
-      label: "Call",
+      label: "Instagram",
+      href: socialLinks.instagram,
+      color: "bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
+      icon: <Instagram className="w-5 h-5" />,
+    },
+    {
+      label: "Facebook",
+      href: socialLinks.facebook,
+      color: "bg-[#1877F2]",
+      icon: <Facebook className="w-5 h-5" />,
+    },
+    {
+      label: siteContacts.phones[0].label,
       href: siteContacts.phones[0].href,
+      color: "bg-primary",
+      icon: <Phone className="w-5 h-5" />,
+    },
+    {
+      label: siteContacts.phones[1].label,
+      href: siteContacts.phones[1].href,
       color: "bg-primary",
       icon: <Phone className="w-5 h-5" />,
     },

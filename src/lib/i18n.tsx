@@ -31,6 +31,7 @@ const ua: Dict = {
 
   "hero.tag": "Проєктування та встановлення СЕС",
   "hero.title": "Сонячні електростанції під ключ",
+  "hero.location": "Україна",
   "hero.subtitle":
     "Проєктуємо, монтуємо та обслуговуємо СЕС для будинків і бізнесу по всій Україні",
 
@@ -251,6 +252,7 @@ const ua: Dict = {
   "contacts.title": "Контакти",
   "contacts.subtitle": "Зв’яжіться з нами зручним способом",
   "contacts.address": "Адреса",
+  "contacts.city": "Полтава",
   "contacts.phone": "Телефон",
   "contacts.email": "Email",
   "contacts.hours": "Графік роботи",
@@ -290,6 +292,7 @@ const en: Dict = {
 
   "hero.tag": "Design & installation of solar power plants",
   "hero.title": "Turnkey solar power plants",
+  "hero.location": "Ukraine",
   "hero.subtitle":
     "We design, install and maintain solar plants for homes and businesses across Ukraine. Up to 25 years warranty.",
 
@@ -509,6 +512,7 @@ const en: Dict = {
   "contacts.title": "Contacts",
   "contacts.subtitle": "Reach out any way you like",
   "contacts.address": "Address",
+  "contacts.city": "Poltava",
   "contacts.phone": "Phone",
   "contacts.email": "Email",
   "contacts.hours": "Working hours",

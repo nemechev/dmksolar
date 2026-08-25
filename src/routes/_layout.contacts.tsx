@@ -80,7 +80,7 @@ function Contacts() {
     <Section eyebrow={t("contacts.subtitle")} title={t("contacts.title")}>
       <div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr]">
         <div>
-          <ContactRow icon={MapPin} label={t("contacts.address")} value={siteContacts.city} />
+          <ContactRow icon={MapPin} label={t("contacts.address")} value={t("contacts.city")} />
           {siteContacts.phones.map((phone) => (
             <ContactRow
               key={phone.href}

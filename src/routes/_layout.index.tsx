@@ -19,7 +19,7 @@ import {
 import hero from "@/assets/hero-portfolio-project.jpg";
 import portfolioHome from "@/assets/portfolio-home.jpg";
 import portfolioBusiness from "@/assets/portfolio-business.jpg";
-import installImg from "@/assets/install-team.jpg";
+import ctaSolarRoof from "@/assets/cta-solar-roof.png";
 
 export const Route = createFileRoute("/_layout/")({
   component: Home,
@@ -56,7 +56,6 @@ function Home() {
 
   const guarantees = [
     { i: ShieldCheck, tk: "g.1.t", dk: "g.1.d" },
-    { i: HardHat, tk: "g.2.t", dk: "g.2.d" },
     { i: BatteryCharging, tk: "g.3.t", dk: "g.3.d" },
     { i: FileCheck, tk: "g.4.t", dk: "g.4.d" },
   ];
@@ -82,7 +81,7 @@ function Home() {
           </h1>
           <div className="mt-5 flex items-center gap-2 text-primary">
             <MapPin className="w-5 h-5" />
-            <span className="text-lg">Україна</span>
+            <span className="text-lg">{t("hero.location")}</span>
           </div>
           <p className="mt-5 max-w-xl text-base md:text-lg opacity-80">{t("hero.subtitle")}</p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -209,10 +208,10 @@ function Home() {
             <p className="mt-4 opacity-80 max-w-md">{t("home.cta.desc")}</p>
             <div className="mt-6 relative rounded-xl overflow-hidden max-w-md">
               <img
-                src={installImg}
+                src={ctaSolarRoof}
                 alt=""
-                width={1200}
-                height={800}
+                width={960}
+                height={1280}
                 loading="lazy"
                 className="w-full h-48 object-cover"
               />

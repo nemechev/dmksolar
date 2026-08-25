@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, MapPin, ShieldCheck, Sun, Wrench } from "lucide-react";
 import { getProjectBySlug } from "@/data/projects";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_layout/projects/$slug")({
   loader: ({ params }) => {
@@ -30,6 +31,9 @@ const process = [
 
 function ProjectPortfolio() {
   const project = Route.useLoaderData();
+  const { lang } = useI18n();
+  const projectLocation =
+    lang === "en" && project.locationEn ? project.locationEn : project.location;
 
   return (
     <article className="bg-dark text-dark-foreground">
@@ -76,7 +80,7 @@ function ProjectPortfolio() {
             </h1>
             <p className="mt-7 flex items-center gap-2 text-base opacity-80 sm:text-lg">
               <MapPin className="h-5 w-5 shrink-0 text-primary" />
-              {project.location}
+              {projectLocation}
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 opacity-65 sm:text-lg">
               {project.intro}

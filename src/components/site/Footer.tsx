@@ -118,7 +118,7 @@ export function Footer() {
               </a>
             </li>
             <li className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 mt-0.5 text-primary" /> {siteContacts.city}
+              <MapPin className="w-4 h-4 mt-0.5 text-primary" /> {t("contacts.city")}
             </li>
           </ul>
           <div className="flex items-center gap-3 mt-4">

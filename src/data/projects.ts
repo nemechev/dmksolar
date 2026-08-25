@@ -26,6 +26,7 @@ export type Project = {
   cardTitle?: string;
   cardSubtitle?: string;
   location: string;
+  locationEn?: string;
   type: string;
   category: "home" | "business";
   image: string;
@@ -58,7 +59,15 @@ type ProjectValues = {
 const createProject = (
   base: Pick<
     Project,
-    "slug" | "title" | "cardTitle" | "cardSubtitle" | "location" | "type" | "category" | "image"
+    | "slug"
+    | "title"
+    | "cardTitle"
+    | "cardSubtitle"
+    | "location"
+    | "locationEn"
+    | "type"
+    | "category"
+    | "image"
   >,
   values: ProjectValues,
 ): Project => ({
@@ -92,6 +101,7 @@ export const homeProjects: Project[] = [
       title: "Smart Storage System",
       cardSubtitle: "5 кВт",
       location: "м. Полтава, Полтавська область",
+      locationEn: "Poltava, Poltava region",
       type: "SSS для квартири",
       category: "home",
       image: homeStorageMain,
@@ -145,6 +155,7 @@ export const businessProjects: Project[] = [
       cardTitle: "Сонячна електростанція",
       cardSubtitle: "60 кВт",
       location: "Черкаська область, с. Багва",
+      locationEn: "Cherkasy region, Bahva village",
       type: "Сільськогосподарське підприємство",
       category: "business",
       image: businessProjectExterior,

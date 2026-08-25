@@ -1,8 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { useI18n } from "@/lib/i18n";
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
+  const { lang } = useI18n();
+
   return (
     <div className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
       {projects.map((project) => (
@@ -46,7 +49,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
               </div>
               <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 shrink-0" />
-                {project.location}
+                {lang === "en" && project.locationEn ? project.locationEn : project.location}
               </p>
             </div>
           </article>

@@ -46,7 +46,6 @@ function FAQ() {
         <div className="space-y-3">
           <p>{t("faq.warranty.panels")}</p>
           <p>{t("faq.warranty.equipment")}</p>
-          <p>{t("faq.warranty.installation")}</p>
         </div>
       ),
     },
