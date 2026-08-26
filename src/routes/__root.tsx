@@ -77,22 +77,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DMK SOLAR — сонячні електростанції під ключ" },
+      { title: "DMK SOLAR — сонячні електростанції під ключ у Полтаві та Україні" },
       {
         name: "description",
-        content: "Проєктування та встановлення СЕС для будинку і бізнесу. Гарантія до 25 років.",
+        content:
+          "DMK SOLAR — проєктування, монтаж та обслуговування сонячних електростанцій для будинку і бізнесу у Полтаві та по Україні. Калькулятор окупності, СЕС під ключ, інвертори та накопичувачі енергії.",
       },
       { property: "og:title", content: "DMK SOLAR — сонячні електростанції під ключ" },
+      { property: "og:url", content: "https://dmksolar.com" },
+      { property: "og:site_name", content: "DMK SOLAR" },
+      {
+        property: "og:image",
+        content: "https://dmksolar.com/assets/hero-portfolio-project-D4j8V9OS.jpg",
+      },
       {
         property: "og:description",
-        content: "Проєктування та встановлення СЕС для будинку і бізнесу.",
+        content:
+          "Сонячні електростанції для приватних будинків і бізнесу: проєктування, монтаж, акумулятори, інвертори та сервіс.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index, follow" },
+      { name: "googlebot", content: "index, follow" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "canonical", href: "https://dmksolar.com/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
