@@ -258,6 +258,19 @@ function Metric({
   );
 }
 
+function formatPowerValue(power: number, locale: string) {
+  if (power >= 1000) {
+    const megawatts = power / 1000;
+    const formatted = megawatts.toLocaleString(locale, {
+      maximumFractionDigits: power % 1000 === 0 ? 0 : 1,
+    });
+
+    return `${formatted} МВт`;
+  }
+
+  return `${power} кВт`;
+}
+
 function Calculator() {
   const { lang } = useI18n();
   const c = copy[lang];
@@ -287,6 +300,9 @@ function Calculator() {
     tariffNumber > 0;
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }), [locale]);
+  const formattedPower = formatPowerValue(power, locale);
+  const formattedMinPower = formatPowerValue(range.min, locale);
+  const formattedMaxPower = formatPowerValue(range.max, locale);
 
   const invalidateResult = () => {
     setResult(null);
@@ -426,9 +442,7 @@ function Calculator() {
                   </label>
                   <p className="mt-1 max-w-lg text-xs text-muted-foreground">{c.powerHint}</p>
                 </div>
-                <div className="text-3xl font-extrabold text-primary">
-                  {power} <span className="text-base">кВт</span>
-                </div>
+                <div className="text-3xl font-extrabold text-primary">{formattedPower}</div>
               </div>
               <input
                 id="solar-power"
@@ -445,8 +459,8 @@ function Calculator() {
                 className="mt-5 w-full cursor-pointer accent-[color:var(--primary)] disabled:cursor-not-allowed disabled:opacity-40"
               />
               <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-                <span>{range.min} кВт</span>
-                <span>{range.max} кВт</span>
+                <span>{formattedMinPower}</span>
+                <span>{formattedMaxPower}</span>
               </div>
             </div>
           </StepCard>
@@ -565,7 +579,11 @@ function Calculator() {
                 <h2 className="mt-2 text-2xl font-bold">{c.resultTitle}</h2>
 
                 <div className="mt-6 grid gap-3">
-                  <Metric featured label={c.recommended} value={`${result.recommendedPower} кВт`} />
+                  <Metric
+                    featured
+                    label={c.recommended}
+                    value={formatPowerValue(result.recommendedPower, locale)}
+                  />
                   <Metric label={c.cost} value={`${fmt.format(result.stationCostUah)} грн`} />
                   <div className="-mt-1 text-right text-xs text-white/45">
                     ≈ ${fmt.format(result.stationCostUsd)}

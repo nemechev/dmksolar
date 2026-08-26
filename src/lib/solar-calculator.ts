@@ -14,7 +14,7 @@ export const REFERENCE_PRICING = {
 
 export const POWER_RANGES: Record<ObjectType, { min: number; max: number }> = {
   home: { min: 5, max: 30 },
-  business: { min: 5, max: 500 },
+  business: { min: 5, max: 5000 },
 };
 
 export type SolarEstimateInput = {
