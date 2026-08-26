@@ -68,11 +68,6 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/catalog" className="hover:text-primary">
-                {t("nav.catalog")}
-              </Link>
-            </li>
-            <li>
               <Link to="/calculator" className="hover:text-primary">
                 {t("nav.calculator")}
               </Link>

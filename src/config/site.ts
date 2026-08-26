@@ -1,10 +1,7 @@
 export const siteContacts = {
   city: "Полтава",
   email: "dmksolarcompany@gmail.com",
-  phones: [
-    { label: "+380 96 706 77 43", href: "tel:+380967067743" },
-    { label: "+380 99 556 32 65", href: "tel:+380995563265" },
-  ],
+  phones: [{ label: "+380 96 706 77 43", href: "tel:+380967067743" }],
 } as const;
 
 // Social URLs are centralized here so they can be replaced without editing UI components.
