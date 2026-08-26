@@ -41,12 +41,6 @@ export function MessengersFAB() {
       color: "bg-primary",
       icon: <Phone className="w-5 h-5" />,
     },
-    {
-      label: siteContacts.phones[1].label,
-      href: siteContacts.phones[1].href,
-      color: "bg-primary",
-      icon: <Phone className="w-5 h-5" />,
-    },
   ];
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
