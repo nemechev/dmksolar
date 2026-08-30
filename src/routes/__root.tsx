@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "DMK SOLAR" },
       {
         property: "og:image",
-        content: "https://dmksolar.com/assets/hero-portfolio-project-D4j8V9OS.jpg",
+        content: "https://dmksolar.com/dmk-solar-share.png",
       },
       {
         property: "og:description",
@@ -97,12 +97,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://dmksolar.com/dmk-solar-share.png" },
       { name: "robots", content: "index, follow" },
       { name: "googlebot", content: "index, follow" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
       { rel: "canonical", href: "https://dmksolar.com/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
