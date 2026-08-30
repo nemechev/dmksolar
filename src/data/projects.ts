@@ -107,7 +107,7 @@ export const homeProjects: Project[] = [
     {
       slug: "home-solar-5-95-poltava",
       title: "Сонячна електростанція",
-      cardSubtitle: "5,95 кВт",
+      cardSubtitle: "6 кВт",
       location: "м. Полтава, Полтавська область",
       locationEn: "Poltava, Poltava region",
       type: "Приватний будинок",
