@@ -34,7 +34,8 @@ export const Route = createFileRoute("/_layout/")({
       { property: "og:title", content: "DMK SOLAR — сонячні електростанції під ключ" },
       {
         property: "og:description",
-        content: "СЕС для будинку та бізнесу. 500+ проєктів. Гарантія до 25 років.",
+        content:
+          "СЕС для будинку та бізнесу. Проєктування, монтаж, акумулятори, інвертори та сервіс.",
       },
       { property: "og:type", content: "website" },
     ],
