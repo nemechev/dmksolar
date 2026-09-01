@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, MapPin, ShieldCheck, Sun, Wrench } from "lucide-react";
 import { getProjectBySlug } from "@/data/projects";
 import { useI18n } from "@/lib/i18n";
+import { localizeProject } from "@/lib/project-i18n";
 
 export const Route = createFileRoute("/_layout/projects/$slug")({
   loader: ({ params }) => {
@@ -21,26 +22,73 @@ export const Route = createFileRoute("/_layout/projects/$slug")({
   component: ProjectPortfolio,
 });
 
-const process = [
-  { number: "01", title: "Проєктування", text: "Аналіз об’єкта та енергопотреб" },
-  { number: "02", title: "Підбір рішення", text: "Конфігурація системи й обладнання" },
-  { number: "03", title: "Постачання", text: "Комплектація та доставка на об’єкт" },
-  { number: "04", title: "Монтаж і запуск", text: "Встановлення, захист і налаштування" },
-  { number: "05", title: "Сервіс", text: "Моніторинг і технічна підтримка" },
-] as const;
+const processCopy = {
+  ua: [
+    { number: "01", title: "Проєктування", text: "Аналіз об’єкта та енергопотреб" },
+    { number: "02", title: "Підбір рішення", text: "Конфігурація системи й обладнання" },
+    { number: "03", title: "Постачання", text: "Комплектація та доставка на об’єкт" },
+    { number: "04", title: "Монтаж і запуск", text: "Встановлення, захист і налаштування" },
+    { number: "05", title: "Сервіс", text: "Моніторинг і технічна підтримка" },
+  ],
+  en: [
+    { number: "01", title: "Design", text: "Site and energy-needs analysis" },
+    { number: "02", title: "Solution selection", text: "System and equipment configuration" },
+    { number: "03", title: "Supply", text: "Equipment set and delivery to site" },
+    { number: "04", title: "Installation & launch", text: "Installation, protection and setup" },
+    { number: "05", title: "Service", text: "Monitoring and technical support" },
+  ],
+} as const;
+
+const pageCopy = {
+  ua: {
+    all: "Усі проєкти",
+    discuss: "Обговорити проєкт",
+    about: "Про проєкт",
+    metrics: "Ключові показники",
+    solution: "Проєктне рішення",
+    solutionTitle: "Система, розрахована під реальне навантаження",
+    mountAlt: "Монтаж обладнання DMK Solar",
+    mount: "Монтаж, налаштування та запуск під ключ",
+    photos: "Фото з об’єкта",
+    gallery: "Галерея проєкту",
+    video: "Відео з реалізованого об’єкта",
+    results: "Результати",
+    efficiency: "Ефективність у цифрах",
+    calculate: "Розрахувати свій проєкт",
+    photoAlt: "Фото проєкту",
+  },
+  en: {
+    all: "All projects",
+    discuss: "Discuss project",
+    about: "About the project",
+    metrics: "Key indicators",
+    solution: "Project solution",
+    solutionTitle: "A system designed for the real load",
+    mountAlt: "DMK Solar equipment installation",
+    mount: "Turnkey installation, setup and launch",
+    photos: "Photos from the site",
+    gallery: "Project gallery",
+    video: "Video from the completed site",
+    results: "Results",
+    efficiency: "Efficiency in numbers",
+    calculate: "Calculate your project",
+    photoAlt: "Project photo",
+  },
+} as const;
 
 function ProjectPortfolio() {
-  const project = Route.useLoaderData();
+  const rawProject = Route.useLoaderData();
   const { lang } = useI18n();
-  const projectLocation =
-    lang === "en" && project.locationEn ? project.locationEn : project.location;
+  const project = localizeProject(rawProject, lang);
+  const process = processCopy[lang];
+  const c = pageCopy[lang];
 
   return (
     <article className="bg-dark text-dark-foreground">
       <section className="relative min-h-[620px] overflow-hidden md:min-h-[720px]">
         <img
           src={project.image}
-          alt={`${project.title}, ${project.location}`}
+          alt={`${project.displayTitle}, ${project.displayLocation}`}
           width={1920}
           height={1080}
           className="absolute inset-0 h-full w-full object-cover"
@@ -53,13 +101,13 @@ function ProjectPortfolio() {
               to="/projects"
               className="inline-flex items-center gap-2 text-sm font-medium opacity-75 transition hover:text-primary hover:opacity-100"
             >
-              <ArrowLeft className="h-4 w-4" /> Усі проєкти
+              <ArrowLeft className="h-4 w-4" /> {c.all}
             </Link>
             <Link
               to="/contacts"
               className="hidden border border-primary px-5 py-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-primary-foreground sm:inline-flex"
             >
-              Обговорити проєкт
+              {c.discuss}
             </Link>
           </div>
 
@@ -74,16 +122,16 @@ function ProjectPortfolio() {
           </div>
 
           <div className="mt-auto max-w-3xl pt-24">
-            <p className="text-sm font-semibold text-primary">{project.type}</p>
+            <p className="text-sm font-semibold text-primary">{project.displayType}</p>
             <h1 className="mt-4 text-4xl font-bold leading-[1.02] tracking-[-0.04em] text-balance sm:text-6xl lg:text-7xl">
-              {project.title}
+              {project.displayTitle}
             </h1>
             <p className="mt-7 flex items-center gap-2 text-base opacity-80 sm:text-lg">
               <MapPin className="h-5 w-5 shrink-0 text-primary" />
-              {projectLocation}
+              {project.displayLocation}
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 opacity-65 sm:text-lg">
-              {project.intro}
+              {project.displayIntro}
             </p>
           </div>
         </div>
@@ -94,18 +142,18 @@ function ProjectPortfolio() {
           <div className="grid gap-8 lg:grid-cols-[.75fr_2.25fr] lg:items-start">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                Про проєкт
+                {c.about}
               </p>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
-                Ключові показники
-              </h2>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">{c.metrics}</h2>
             </div>
             <dl
               className={`grid gap-px overflow-hidden border border-white/10 bg-white/10 ${
-                project.metrics.length <= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 xl:grid-cols-3"
+                project.displayMetrics.length <= 3
+                  ? "sm:grid-cols-3"
+                  : "sm:grid-cols-2 xl:grid-cols-3"
               }`}
             >
-              {project.metrics.map((metric, index) => (
+              {project.displayMetrics.map((metric, index) => (
                 <div
                   key={`${metric.label}-${metric.value}`}
                   className="group relative min-h-36 bg-[#0b211a] p-6 transition-colors duration-300 hover:bg-[#102b22]"
@@ -129,18 +177,18 @@ function ProjectPortfolio() {
         <div className="mx-auto grid max-w-[1536px] gap-12 px-4 sm:px-6 lg:grid-cols-[.92fr_1.08fr] lg:items-stretch lg:px-8">
           <div className="flex flex-col justify-center lg:pr-12">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              Проєктне рішення
+              {c.solution}
             </p>
             <h2 className="mt-5 max-w-xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-              Система, розрахована під реальне навантаження
+              {c.solutionTitle}
             </h2>
             <div className="mt-8 space-y-5 text-base leading-7 opacity-70">
-              {project.description.map((paragraph) => (
+              {project.displayDescription.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
             <ul className="mt-9 grid gap-4 sm:grid-cols-2">
-              {project.features.map((feature) => (
+              {project.displayFeatures.map((feature) => (
                 <li key={feature} className="flex gap-3 text-sm leading-6 opacity-85">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   {feature}
@@ -151,7 +199,7 @@ function ProjectPortfolio() {
           <div className="relative min-h-[420px] overflow-hidden lg:min-h-[620px]">
             <img
               src={project.gallery[1]}
-              alt="Монтаж обладнання DMK Solar"
+              alt={c.mountAlt}
               width={1200}
               height={900}
               loading="lazy"
@@ -159,9 +207,7 @@ function ProjectPortfolio() {
             />
             <div className="absolute bottom-0 left-0 bg-primary p-5 text-primary-foreground sm:p-7">
               <Wrench className="h-6 w-6" />
-              <p className="mt-3 max-w-48 text-sm font-semibold">
-                Монтаж, налаштування та запуск під ключ
-              </p>
+              <p className="mt-3 max-w-48 text-sm font-semibold">{c.mount}</p>
             </div>
           </div>
         </div>
@@ -172,11 +218,9 @@ function ProjectPortfolio() {
           <div className="flex items-end justify-between gap-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                Фото з об’єкта
+                {c.photos}
               </p>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-5xl">
-                Галерея проєкту
-              </h2>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-5xl">{c.gallery}</h2>
             </div>
             <Sun className="hidden h-10 w-10 text-primary sm:block" strokeWidth={1.4} />
           </div>
@@ -188,7 +232,7 @@ function ProjectPortfolio() {
               >
                 <img
                   src={image}
-                  alt={`Фото проєкту ${index + 1}`}
+                  alt={`${c.photoAlt} ${index + 1}`}
                   width={1200}
                   height={900}
                   loading="lazy"
@@ -204,7 +248,7 @@ function ProjectPortfolio() {
                   preload="metadata"
                   poster={project.videoPoster}
                   className="h-full w-full object-cover object-center fullscreen:bg-black fullscreen:object-contain"
-                  aria-label="Відео з реалізованого об’єкта"
+                  aria-label={c.video}
                 >
                   <source src={project.video} type="video/mp4" />
                 </video>
@@ -219,12 +263,12 @@ function ProjectPortfolio() {
           <div className="grid gap-10 xl:grid-cols-[1fr_3fr_auto] xl:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                Результати
+                {c.results}
               </p>
-              <h2 className="mt-4 text-3xl font-bold">Ефективність у цифрах</h2>
+              <h2 className="mt-4 text-3xl font-bold">{c.efficiency}</h2>
             </div>
             <div className="grid grid-cols-2 border-l border-white/10 md:grid-cols-4">
-              {project.results.map((result) => (
+              {project.displayResults.map((result) => (
                 <div key={result.label} className="border-r border-white/10 px-5 py-2">
                   <p className="text-2xl font-bold text-primary md:text-3xl">{result.value}</p>
                   <p className="mt-2 text-xs leading-5 opacity-55">{result.label}</p>
@@ -235,7 +279,7 @@ function ProjectPortfolio() {
               to="/calculator"
               className="inline-flex min-h-14 items-center justify-center gap-5 bg-primary px-7 font-semibold text-primary-foreground transition hover:brightness-110 active:translate-y-px"
             >
-              Розрахувати свій проєкт <ArrowRight className="h-5 w-5" />
+              {c.calculate} <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>

@@ -258,17 +258,17 @@ function Metric({
   );
 }
 
-function formatPowerValue(power: number, locale: string) {
+function formatPowerValue(power: number, locale: string, lang: "ua" | "en") {
   if (power >= 1000) {
     const megawatts = power / 1000;
     const formatted = megawatts.toLocaleString(locale, {
       maximumFractionDigits: power % 1000 === 0 ? 0 : 1,
     });
 
-    return `${formatted} МВт`;
+    return `${formatted} ${lang === "en" ? "MW" : "МВт"}`;
   }
 
-  return `${power} кВт`;
+  return `${power} ${lang === "en" ? "kW" : "кВт"}`;
 }
 
 function Calculator() {
@@ -300,9 +300,9 @@ function Calculator() {
     tariffNumber > 0;
 
   const fmt = useMemo(() => new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }), [locale]);
-  const formattedPower = formatPowerValue(power, locale);
-  const formattedMinPower = formatPowerValue(range.min, locale);
-  const formattedMaxPower = formatPowerValue(range.max, locale);
+  const formattedPower = formatPowerValue(power, locale, lang);
+  const formattedMinPower = formatPowerValue(range.min, locale, lang);
+  const formattedMaxPower = formatPowerValue(range.max, locale, lang);
 
   const invalidateResult = () => {
     setResult(null);
@@ -582,20 +582,23 @@ function Calculator() {
                   <Metric
                     featured
                     label={c.recommended}
-                    value={formatPowerValue(result.recommendedPower, locale)}
+                    value={formatPowerValue(result.recommendedPower, locale, lang)}
                   />
-                  <Metric label={c.cost} value={`${fmt.format(result.stationCostUah)} грн`} />
+                  <Metric
+                    label={c.cost}
+                    value={`${fmt.format(result.stationCostUah)} ${lang === "en" ? "UAH" : "грн"}`}
+                  />
                   <div className="-mt-1 text-right text-xs text-white/45">
                     ≈ ${fmt.format(result.stationCostUsd)}
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <Metric
                       label={c.annualConsumption}
-                      value={`${fmt.format(result.annualConsumption)} кВт·год`}
+                      value={`${fmt.format(result.annualConsumption)} ${lang === "en" ? "kWh" : "кВт·год"}`}
                     />
                     <Metric
                       label={c.annualCost}
-                      value={`${fmt.format(result.annualElectricityCost)} грн`}
+                      value={`${fmt.format(result.annualElectricityCost)} ${lang === "en" ? "UAH" : "грн"}`}
                     />
                   </div>
                   <Metric

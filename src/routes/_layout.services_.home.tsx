@@ -19,15 +19,26 @@ export const Route = createFileRoute("/_layout/services_/home")({
 });
 
 function ForHome() {
-  const { t } = useI18n();
-  const perks = [
-    "Автономне живлення 5–30 кВт",
-    "Економія до 90% на електроенергії",
-    "Готова до підключення станція за 5–7 днів",
-    "Резервне живлення під час відключень",
-    "Термін окупності 4–6 років",
-    "Гарантія 25 років на панелі",
-  ];
+  const { t, lang } = useI18n();
+  const perks =
+    lang === "en"
+      ? [
+          "Autonomous power 5–30 kW",
+          "Up to 90% savings on electricity",
+          "Ready-to-connect plant in 5–7 days",
+          "Backup power during outages",
+          "Payback period 4–6 years",
+          "25-year panel warranty",
+        ]
+      : [
+          "Автономне живлення 5–30 кВт",
+          "Економія до 90% на електроенергії",
+          "Готова до підключення станція за 5–7 днів",
+          "Резервне живлення під час відключень",
+          "Термін окупності 4–6 років",
+          "Гарантія 25 років на панелі",
+        ];
+  const title = lang === "en" ? "Benefits of solar for a private house" : "{title}";
   return (
     <>
       <section className="relative bg-dark text-dark-foreground overflow-hidden">
@@ -50,7 +61,7 @@ function ForHome() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-2 items-start">
           <div>
-            <h2 className="text-2xl md:text-4xl font-bold">Переваги СЕС для приватного будинку</h2>
+            <h2 className="text-2xl md:text-4xl font-bold">{title}</h2>
             <ul className="mt-6 space-y-3">
               {perks.map((p) => (
                 <li key={p} className="flex items-start gap-3">

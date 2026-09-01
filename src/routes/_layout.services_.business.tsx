@@ -19,15 +19,26 @@ export const Route = createFileRoute("/_layout/services_/business")({
 });
 
 function ForBiz() {
-  const { t } = useI18n();
-  const perks = [
-    "Потужність від 30 кВт до 5 МВт+",
-    "Економія до 6 000 000 грн/рік",
-    "Окупність 1.5–3 роки",
-    "Зменшення споживання з мережі на 30–70%",
-    "Проєкт під ключ з документами",
-    "24/7 моніторинг і сервіс",
-  ];
+  const { t, lang } = useI18n();
+  const perks =
+    lang === "en"
+      ? [
+          "Capacity from 30 kW to 5 MW+",
+          "Savings up to 6,000,000 UAH/year",
+          "Payback in 1.5–3 years",
+          "30–70% lower grid consumption",
+          "Turnkey project with documents",
+          "24/7 monitoring and service",
+        ]
+      : [
+          "Потужність від 30 кВт до 5 МВт+",
+          "Економія до 6 000 000 грн/рік",
+          "Окупність 1.5–3 роки",
+          "Зменшення споживання з мережі на 30–70%",
+          "Проєкт під ключ з документами",
+          "24/7 моніторинг і сервіс",
+        ];
+  const title = lang === "en" ? "Benefits of solar for business" : "{title}";
   return (
     <>
       <section className="relative bg-dark text-dark-foreground overflow-hidden">
@@ -50,7 +61,7 @@ function ForBiz() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-2 items-start">
           <div>
-            <h2 className="text-2xl md:text-4xl font-bold">Переваги СЕС для бізнесу</h2>
+            <h2 className="text-2xl md:text-4xl font-bold">{title}</h2>
             <ul className="mt-6 space-y-3">
               {perks.map((p) => (
                 <li key={p} className="flex items-start gap-3">
