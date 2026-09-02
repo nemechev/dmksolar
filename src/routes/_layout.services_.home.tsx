@@ -38,7 +38,8 @@ function ForHome() {
           "Термін окупності 4–6 років",
           "Гарантія 25 років на панелі",
         ];
-  const title = lang === "en" ? "Benefits of solar for a private house" : "{title}";
+  const title =
+    lang === "en" ? "Benefits of solar for a private house" : "Переваги СЕС для приватного будинку";
   return (
     <>
       <section className="relative bg-dark text-dark-foreground overflow-hidden">

@@ -38,7 +38,7 @@ function ForBiz() {
           "Проєкт під ключ з документами",
           "24/7 моніторинг і сервіс",
         ];
-  const title = lang === "en" ? "Benefits of solar for business" : "{title}";
+  const title = lang === "en" ? "Benefits of solar for business" : "Переваги СЕС для бізнесу";
   return (
     <>
       <section className="relative bg-dark text-dark-foreground overflow-hidden">
