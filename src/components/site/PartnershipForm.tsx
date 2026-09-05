@@ -21,7 +21,7 @@ export function PartnershipForm() {
       const contactData = String(formData.get(referralForm.fields.contactData) ?? "").trim();
       const promoCode = String(formData.get(referralForm.fields.promocode) ?? "").trim();
 
-      formData.set(referralForm.fields.referrerPhone, partnerPhone || "Не вказано");
+      formData.set(referralForm.fields.referrerPhone, partnerPhone || "+380000000000");
       formData.set(
         referralForm.fields.referrerName,
         [
@@ -33,7 +33,7 @@ export function PartnershipForm() {
           .join(" | "),
       );
       formData.set(referralForm.fields.clientName, "Заявка на партнерську програму");
-      formData.set(referralForm.fields.clientPhone, "Не вказано");
+      formData.set(referralForm.fields.clientPhone, "+380000000000");
 
       await fetch(referralForm.action, {
         method: "POST",
