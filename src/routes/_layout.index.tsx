@@ -6,7 +6,6 @@ import {
   MapPin,
   Ruler,
   Package,
-  HardHat,
   Plug,
   Wrench,
   ShieldCheck,
@@ -47,7 +46,6 @@ function Home() {
   const services = [
     { i: Ruler, tk: "svc.design.t", dk: "svc.design.d" },
     { i: Package, tk: "svc.supply.t", dk: "svc.supply.d" },
-    { i: HardHat, tk: "svc.install.t", dk: "svc.install.d" },
     { i: Plug, tk: "svc.connect.t", dk: "svc.connect.d" },
     { i: Wrench, tk: "svc.service.t", dk: "svc.service.d" },
   ];
