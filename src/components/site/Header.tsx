@@ -16,11 +16,11 @@ export function Header() {
   const { t, lang, setLang } = useI18n();
   const [open, setOpen] = useState(false);
   const desktopLinkClass =
-    "relative flex h-full items-center px-2.5 text-[13px] font-medium opacity-75 transition duration-200 after:absolute after:inset-x-2.5 after:bottom-0 after:h-0.5 after:origin-center after:scale-x-0 after:bg-primary after:transition-transform hover:text-primary hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-primary";
+    "relative flex h-full items-center px-2 text-[12.5px] font-medium opacity-75 transition duration-200 after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:origin-center after:scale-x-0 after:bg-primary after:transition-transform hover:text-primary hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-primary";
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-dark text-dark-foreground shadow-[0_10px_30px_rgba(4,18,14,0.16)]">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 xl:grid xl:h-[72px] xl:grid-cols-[minmax(190px,1fr)_auto_minmax(190px,1fr)] xl:gap-6 xl:px-8 2xl:max-w-[1536px]">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 xl:grid xl:h-[72px] xl:grid-cols-[auto_minmax(0,1fr)_auto] xl:gap-5 xl:px-8 2xl:max-w-[1536px]">
         <Link
           to="/"
           aria-label="DMK Solar — головна"
@@ -37,7 +37,7 @@ export function Header() {
 
         <nav
           aria-label={t("nav.main")}
-          className="hidden h-full items-center justify-center xl:flex"
+          className="hidden h-full min-w-0 items-center justify-center xl:flex"
         >
           <Link
             to="/about"
@@ -89,10 +89,10 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex min-w-0 items-center justify-end gap-3">
+        <div className="flex min-w-max items-center justify-end gap-2">
           <a
             href={siteContacts.phones[0].href}
-            className="hidden shrink-0 items-center gap-2 whitespace-nowrap text-sm opacity-80 transition hover:text-primary hover:opacity-100 2xl:flex"
+            className="hidden shrink-0 items-center gap-2 whitespace-nowrap text-sm opacity-80 transition hover:text-primary hover:opacity-100 min-[1700px]:flex"
           >
             <Phone className="w-4 h-4" /> {siteContacts.phones[0].label}
           </a>
@@ -111,7 +111,7 @@ export function Header() {
           </div>
           <Link
             to="/contacts"
-            className="hidden shrink-0 whitespace-nowrap bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110 active:translate-y-px 2xl:inline-flex"
+            className="hidden shrink-0 whitespace-nowrap bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110 active:translate-y-px min-[1700px]:inline-flex"
           >
             {t("cta.request")}
           </Link>
