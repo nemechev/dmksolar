@@ -15,6 +15,7 @@ import { Route as LayoutServicesRouteImport } from './routes/_layout.services'
 import { Route as LayoutReferralRouteImport } from './routes/_layout.referral'
 import { Route as LayoutProjectsRouteImport } from './routes/_layout.projects'
 import { Route as LayoutPricesRouteImport } from './routes/_layout.prices'
+import { Route as LayoutPartnershipRouteImport } from './routes/_layout.partnership'
 import { Route as LayoutFaqRouteImport } from './routes/_layout.faq'
 import { Route as LayoutContactsRouteImport } from './routes/_layout.contacts'
 import { Route as LayoutCatalogRouteImport } from './routes/_layout.catalog'
@@ -54,6 +55,11 @@ const LayoutProjectsRoute = LayoutProjectsRouteImport.update({
 const LayoutPricesRoute = LayoutPricesRouteImport.update({
   id: '/prices',
   path: '/prices',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutPartnershipRoute = LayoutPartnershipRouteImport.update({
+  id: '/partnership',
+  path: '/partnership',
   getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutFaqRoute = LayoutFaqRouteImport.update({
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/catalog': typeof LayoutCatalogRoute
   '/contacts': typeof LayoutContactsRoute
   '/faq': typeof LayoutFaqRoute
+  '/partnership': typeof LayoutPartnershipRoute
   '/prices': typeof LayoutPricesRoute
   '/projects': typeof LayoutProjectsRouteWithChildren
   '/referral': typeof LayoutReferralRoute
@@ -137,6 +144,7 @@ export interface FileRoutesByTo {
   '/catalog': typeof LayoutCatalogRoute
   '/contacts': typeof LayoutContactsRoute
   '/faq': typeof LayoutFaqRoute
+  '/partnership': typeof LayoutPartnershipRoute
   '/prices': typeof LayoutPricesRoute
   '/projects': typeof LayoutProjectsRouteWithChildren
   '/referral': typeof LayoutReferralRoute
@@ -157,6 +165,7 @@ export interface FileRoutesById {
   '/_layout/catalog': typeof LayoutCatalogRoute
   '/_layout/contacts': typeof LayoutContactsRoute
   '/_layout/faq': typeof LayoutFaqRoute
+  '/_layout/partnership': typeof LayoutPartnershipRoute
   '/_layout/prices': typeof LayoutPricesRoute
   '/_layout/projects': typeof LayoutProjectsRouteWithChildren
   '/_layout/referral': typeof LayoutReferralRoute
@@ -178,6 +187,7 @@ export interface FileRouteTypes {
     | '/catalog'
     | '/contacts'
     | '/faq'
+    | '/partnership'
     | '/prices'
     | '/projects'
     | '/referral'
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
     | '/catalog'
     | '/contacts'
     | '/faq'
+    | '/partnership'
     | '/prices'
     | '/projects'
     | '/referral'
@@ -214,6 +225,7 @@ export interface FileRouteTypes {
     | '/_layout/catalog'
     | '/_layout/contacts'
     | '/_layout/faq'
+    | '/_layout/partnership'
     | '/_layout/prices'
     | '/_layout/projects'
     | '/_layout/referral'
@@ -272,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/prices'
       fullPath: '/prices'
       preLoaderRoute: typeof LayoutPricesRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/partnership': {
+      id: '/_layout/partnership'
+      path: '/partnership'
+      fullPath: '/partnership'
+      preLoaderRoute: typeof LayoutPartnershipRouteImport
       parentRoute: typeof LayoutRoute
     }
     '/_layout/faq': {
@@ -377,6 +396,7 @@ interface LayoutRouteChildren {
   LayoutCatalogRoute: typeof LayoutCatalogRoute
   LayoutContactsRoute: typeof LayoutContactsRoute
   LayoutFaqRoute: typeof LayoutFaqRoute
+  LayoutPartnershipRoute: typeof LayoutPartnershipRoute
   LayoutPricesRoute: typeof LayoutPricesRoute
   LayoutProjectsRoute: typeof LayoutProjectsRouteWithChildren
   LayoutReferralRoute: typeof LayoutReferralRoute
@@ -393,6 +413,7 @@ const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutCatalogRoute: LayoutCatalogRoute,
   LayoutContactsRoute: LayoutContactsRoute,
   LayoutFaqRoute: LayoutFaqRoute,
+  LayoutPartnershipRoute: LayoutPartnershipRoute,
   LayoutPricesRoute: LayoutPricesRoute,
   LayoutProjectsRoute: LayoutProjectsRouteWithChildren,
   LayoutReferralRoute: LayoutReferralRoute,

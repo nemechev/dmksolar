@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { contactForm } from "@/config/site";
 import { useI18n } from "@/lib/i18n";
 import { toast } from "sonner";
@@ -6,6 +6,10 @@ import { toast } from "sonner";
 export function ContactForm({ compact = false }: { compact?: boolean }) {
   const { t } = useI18n();
   const [loading, setLoading] = useState(false);
+  const initialPromoCode = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    return new URLSearchParams(window.location.search).get("promocode") ?? "";
+  }, []);
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,6 +66,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
       />
       <input
         name={contactForm.fields.promocode}
+        defaultValue={initialPromoCode}
         placeholder={t("form.promocode")}
         className="h-12 rounded-md border text-black border-border bg-background px-4 text-sm outline-none focus:border-primary"
       />

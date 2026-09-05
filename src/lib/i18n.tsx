@@ -15,7 +15,8 @@ const ua: Dict = {
   "nav.blog": "Блог",
   "nav.faq": "FAQ",
   "nav.contacts": "Контакти",
-  "nav.referral": "Партнерська програма",
+  "nav.referral": "Реферальна програма",
+  "nav.partnership": "Партнерська програма",
   "nav.main": "Головна навігація",
   "nav.mobile": "Мобільна навігація",
   "nav.menu": "Відкрити меню",
@@ -176,14 +177,14 @@ const ua: Dict = {
   "projects.home.title": "Проєкти для будинку",
   "projects.business.title": "Проєкти для бізнесу",
 
-  "referral.title": "Партнерство з нашою компанією",
+  "referral.title": "Рекомендуйте нас — отримуйте винагороду",
   "referral.lead":
     "Знаєте людину, яка планує встановити сонячну електростанцію, інвертор або систему накопичення енергії?",
   "referral.description":
     "Порекомендуйте нашу компанію та отримайте винагороду за успішну рекомендацію.",
   "referral.flow.recommend": "Рекомендуй",
   "referral.flow.install": "Клієнт встановлює СЕС",
-  "referral.flow.reward": "Отримуєш від 2%",
+  "referral.flow.reward": "Отримуєш 1%",
   "referral.cta": "Передати рекомендацію",
   "referral.process.eyebrow": "Чотири прості кроки",
   "referral.process.title": "Як це працює?",
@@ -218,7 +219,7 @@ const ua: Dict = {
   "referral.form.contact_data": "Контактні дані: WhatsApp, Viber, Telegram тощо",
   "referral.form.full_name": "ПІБ",
   "referral.form.phone": "Номер телефону",
-  "referral.form.submit": "Стати партнером",
+  "referral.form.submit": "Передати клієнта",
   "referral.form.sending": "Надсилання…",
   "referral.form.success.title": "Рекомендацію прийнято",
   "referral.form.success":
@@ -278,7 +279,8 @@ const en: Dict = {
   "nav.blog": "Blog",
   "nav.faq": "FAQ",
   "nav.contacts": "Contacts",
-  "nav.referral": "Partnership program",
+  "nav.referral": "Referral program",
+  "nav.partnership": "Partnership program",
   "nav.main": "Main navigation",
   "nav.mobile": "Mobile navigation",
   "nav.menu": "Open menu",
@@ -438,14 +440,14 @@ const en: Dict = {
   "projects.home.title": "Home projects",
   "projects.business.title": "Business projects",
 
-  "referral.title": "Partnership with our company",
+  "referral.title": "Recommend us — earn a reward",
   "referral.lead":
     "Know someone planning to install a solar power plant, inverter or energy storage system?",
   "referral.description":
     "Recommend our company and receive a reward when the referral becomes a completed project.",
   "referral.flow.recommend": "Recommend",
   "referral.flow.install": "Client installs solar",
-  "referral.flow.reward": "Receive from 2%",
+  "referral.flow.reward": "Receive 1%",
   "referral.cta": "Submit a referral",
   "referral.process.eyebrow": "Four simple steps",
   "referral.process.title": "How does it work?",
@@ -480,7 +482,7 @@ const en: Dict = {
   "referral.form.contact_data": "Contact details: WhatsApp, Viber, Telegram, etc.",
   "referral.form.full_name": "Full name",
   "referral.form.phone": "Phone number",
-  "referral.form.submit": "Become a partner",
+  "referral.form.submit": "Refer client",
   "referral.form.sending": "Sending…",
   "referral.form.success.title": "Referral received",
   "referral.form.success":

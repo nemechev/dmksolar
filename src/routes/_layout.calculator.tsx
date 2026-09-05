@@ -282,6 +282,7 @@ function Calculator() {
   const [power, setPower] = useState(5);
   const [monthlyConsumption, setMonthlyConsumption] = useState("");
   const [tariff, setTariff] = useState("4,32");
+  const [promoCode, setPromoCode] = useState("");
   const [result, setResult] = useState<SolarEstimate | null>(null);
   const [showErrors, setShowErrors] = useState(false);
 
@@ -363,6 +364,7 @@ function Calculator() {
     setPower(5);
     setMonthlyConsumption("");
     setTariff("4,32");
+    setPromoCode("");
     setResult(null);
     setShowErrors(false);
   };
@@ -525,6 +527,23 @@ function Calculator() {
               </label>
             </div>
 
+            <label className="mt-5 block">
+              <span className="text-sm font-semibold">
+                {lang === "en" ? "Promo code" : "Промокод"}
+              </span>
+              <input
+                type="text"
+                value={promoCode}
+                onChange={(event) => setPromoCode(event.target.value)}
+                placeholder={
+                  lang === "en"
+                    ? "Enter promo code if you have one"
+                    : "Введіть промокод, якщо він є"
+                }
+                className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary"
+              />
+            </label>
+
             <div className="mt-5">
               <div className="mb-3 text-sm font-semibold">{c.mounting}</div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -633,6 +652,7 @@ function Calculator() {
 
                 <Link
                   to="/contacts"
+                  search={promoCode.trim() ? { promocode: promoCode.trim() } : undefined}
                   className="mt-6 inline-flex h-13 w-full items-center justify-center rounded-xl bg-primary px-5 text-center text-sm font-bold text-primary-foreground transition hover:brightness-110"
                 >
                   {c.consultation}

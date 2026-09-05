@@ -9,6 +9,7 @@ const nav = [
   { to: "/projects", key: "nav.projects" },
   { to: "/calculator", key: "nav.calculator" },
   { to: "/referral", key: "nav.referral" },
+  { to: "/partnership", key: "nav.partnership" },
 ] as const;
 
 export function Header() {

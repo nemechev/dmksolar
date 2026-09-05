@@ -5,7 +5,7 @@ import { useI18n } from "@/lib/i18n";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
-export function ReferralForm() {
+export function PartnershipForm() {
   const { t } = useI18n();
   const [state, setState] = useState<SubmitState>("idle");
 
@@ -15,9 +15,29 @@ export function ReferralForm() {
     setState("submitting");
 
     try {
+      const formData = new FormData(form);
+      const partnerName = String(formData.get(referralForm.fields.referrerName) ?? "").trim();
+      const partnerPhone = String(formData.get(referralForm.fields.referrerPhone) ?? "").trim();
+      const contactData = String(formData.get(referralForm.fields.contactData) ?? "").trim();
+      const promoCode = String(formData.get(referralForm.fields.promocode) ?? "").trim();
+
+      formData.set(referralForm.fields.referrerPhone, partnerPhone || "Не вказано");
+      formData.set(
+        referralForm.fields.referrerName,
+        [
+          partnerName,
+          contactData ? `Контактні дані: ${contactData}` : "",
+          promoCode ? `Промокод: ${promoCode}` : "",
+        ]
+          .filter(Boolean)
+          .join(" | "),
+      );
+      formData.set(referralForm.fields.clientName, "Заявка на партнерську програму");
+      formData.set(referralForm.fields.clientPhone, "Не вказано");
+
       await fetch(referralForm.action, {
         method: "POST",
-        body: new FormData(form),
+        body: formData,
         mode: "no-cors",
       });
 
@@ -35,14 +55,16 @@ export function ReferralForm() {
         role="status"
       >
         <CheckCircle2 className="h-9 w-9 text-primary" />
-        <h2 className="mt-6 text-2xl font-bold">{t("referral.form.success.title")}</h2>
-        <p className="mt-3 leading-7 text-dark-foreground/70">{t("referral.form.success")}</p>
+        <h2 className="mt-6 text-2xl font-bold">Заявку прийнято</h2>
+        <p className="mt-3 leading-7 text-dark-foreground/70">
+          Дякуємо! Ми зв’яжемося з вами та обговоримо формат співпраці.
+        </p>
         <button
           type="button"
           onClick={() => setState("idle")}
           className="mt-7 w-fit border-b border-primary pb-1 text-sm font-semibold text-primary"
         >
-          {t("referral.form.another")}
+          Надіслати ще одну заявку
         </button>
       </div>
     );
@@ -54,67 +76,56 @@ export function ReferralForm() {
   return (
     <form onSubmit={submit} className="border border-white/10 bg-white/[0.03] p-6 md:p-8">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-        {t("referral.form.eyebrow")}
+        Партнерська форма
       </p>
-      <h2 className="mt-3 text-2xl font-bold md:text-3xl">{t("referral.form.title")}</h2>
+      <h2 className="mt-3 text-2xl font-bold md:text-3xl">Хочу стати партнером</h2>
 
-      <fieldset className="mt-7 grid gap-3">
-        <legend className="mb-3 text-sm font-semibold">{t("referral.form.referrer")}</legend>
-        <label className="sr-only" htmlFor="referrer-name">
-          {t("referral.form.full_name")}
+      <div className="mt-7 grid gap-3">
+        <label className="sr-only" htmlFor="partner-name">
+          ПІБ
         </label>
         <input
-          id="referrer-name"
+          id="partner-name"
           required
           name={referralForm.fields.referrerName}
           autoComplete="name"
-          placeholder={t("referral.form.full_name")}
+          placeholder="ПІБ"
           className={inputClass}
         />
-        <label className="sr-only" htmlFor="referrer-phone">
-          {t("referral.form.phone")}
+        <label className="sr-only" htmlFor="partner-phone">
+          Номер телефону
         </label>
         <input
-          id="referrer-phone"
-          required
+          id="partner-phone"
           name={referralForm.fields.referrerPhone}
           type="tel"
           inputMode="tel"
           autoComplete="tel"
           pattern="[+0-9()\s-]{10,20}"
-          placeholder={t("referral.form.phone")}
+          placeholder="Номер телефону (не обов’язково)"
           className={inputClass}
         />
-      </fieldset>
-
-      <fieldset className="mt-6 grid gap-3">
-        <legend className="mb-3 text-sm font-semibold">{t("referral.form.client")}</legend>
-        <label className="sr-only" htmlFor="client-name">
-          {t("referral.form.full_name")}
+        <label className="sr-only" htmlFor="partner-contact-data">
+          Контактні дані
         </label>
         <input
-          id="client-name"
-          required
-          name={referralForm.fields.clientName}
+          id="partner-contact-data"
+          name={referralForm.fields.contactData}
           autoComplete="off"
-          placeholder={t("referral.form.full_name")}
+          placeholder="Контактні дані: WhatsApp, Viber, Telegram тощо (не обов’язково)"
           className={inputClass}
         />
-        <label className="sr-only" htmlFor="client-phone">
-          {t("referral.form.phone")}
+        <label className="sr-only" htmlFor="partner-promocode">
+          {t("form.promocode")}
         </label>
         <input
-          id="client-phone"
-          required
-          name={referralForm.fields.clientPhone}
-          type="tel"
-          inputMode="tel"
+          id="partner-promocode"
+          name={referralForm.fields.promocode}
           autoComplete="off"
-          pattern="[+0-9()\s-]{10,20}"
-          placeholder={t("referral.form.phone")}
+          placeholder={`${t("form.promocode")} (не обов’язково)`}
           className={inputClass}
         />
-      </fieldset>
+      </div>
 
       <label className="mt-5 flex items-start gap-3 text-xs leading-5 text-white/55">
         <input required type="checkbox" className="mt-1 accent-[color:var(--primary)]" />
@@ -123,7 +134,7 @@ export function ReferralForm() {
 
       {state === "error" && (
         <p className="mt-4 text-sm text-red-300" role="alert">
-          {t("referral.form.error")}
+          Дані не надіслано. Перевірте з’єднання та спробуйте ще раз.
         </p>
       )}
 
@@ -133,7 +144,7 @@ export function ReferralForm() {
         className="mt-6 flex h-13 w-full items-center justify-center gap-3 bg-primary px-5 font-semibold text-primary-foreground transition hover:brightness-110 active:translate-y-px disabled:cursor-wait disabled:opacity-60"
       >
         {state === "submitting" && <LoaderCircle className="h-5 w-5 animate-spin" />}
-        {state === "submitting" ? t("referral.form.sending") : t("referral.form.submit")}
+        {state === "submitting" ? "Надсилання…" : "Стати партнером"}
       </button>
     </form>
   );
