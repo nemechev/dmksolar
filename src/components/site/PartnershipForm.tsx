@@ -72,6 +72,8 @@ export function PartnershipForm() {
 
   const inputClass =
     "h-12 w-full border border-white/15 bg-white/[0.04] px-4 text-sm text-white outline-none transition placeholder:text-white/40 focus:border-primary focus:ring-1 focus:ring-primary";
+  const fieldLabelClass =
+    "mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-white/55";
 
   return (
     <form onSubmit={submit} className="border border-white/10 bg-white/[0.03] p-6 md:p-8">
@@ -80,51 +82,56 @@ export function PartnershipForm() {
       </p>
       <h2 className="mt-3 text-2xl font-bold md:text-3xl">Хочу стати партнером</h2>
 
-      <div className="mt-7 grid gap-3">
-        <label className="sr-only" htmlFor="partner-name">
-          ПІБ
+      <div className="mt-7 grid gap-5">
+        <label className="block" htmlFor="partner-name">
+          <span className={fieldLabelClass}>Ваше ім’я</span>
+          <input
+            id="partner-name"
+            required
+            name={referralForm.fields.referrerName}
+            autoComplete="name"
+            placeholder="ПІБ"
+            className={inputClass}
+          />
         </label>
-        <input
-          id="partner-name"
-          required
-          name={referralForm.fields.referrerName}
-          autoComplete="name"
-          placeholder="ПІБ"
-          className={inputClass}
-        />
-        <label className="sr-only" htmlFor="partner-phone">
-          Номер телефону
+
+        <div className="grid gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 md:grid-cols-2">
+          <label className="block" htmlFor="partner-phone">
+            <span className={fieldLabelClass}>Телефон</span>
+            <input
+              id="partner-phone"
+              name={referralForm.fields.referrerPhone}
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              pattern="[+0-9()\s-]{10,20}"
+              placeholder="+380 ... (не обов’язково)"
+              className={inputClass}
+            />
+          </label>
+
+          <label className="block" htmlFor="partner-contact-data">
+            <span className={fieldLabelClass}>Інші контакти</span>
+            <input
+              id="partner-contact-data"
+              name={referralForm.fields.contactData}
+              autoComplete="off"
+              placeholder="WhatsApp, Viber, Telegram тощо"
+              className={inputClass}
+            />
+          </label>
+        </div>
+
+        <label className="block" htmlFor="partner-promocode">
+          <span className={fieldLabelClass}>Промокод</span>
+          <input
+            id="partner-promocode"
+            name={referralForm.fields.promocode}
+            autoComplete="off"
+            placeholder={`${t("form.promocode")} (не обов’язково)`}
+            className={inputClass}
+          />
         </label>
-        <input
-          id="partner-phone"
-          name={referralForm.fields.referrerPhone}
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          pattern="[+0-9()\s-]{10,20}"
-          placeholder="Номер телефону (не обов’язково)"
-          className={inputClass}
-        />
-        <label className="sr-only" htmlFor="partner-contact-data">
-          Контактні дані
-        </label>
-        <input
-          id="partner-contact-data"
-          name={referralForm.fields.contactData}
-          autoComplete="off"
-          placeholder="Контактні дані: WhatsApp, Viber, Telegram тощо (не обов’язково)"
-          className={inputClass}
-        />
-        <label className="sr-only" htmlFor="partner-promocode">
-          {t("form.promocode")}
-        </label>
-        <input
-          id="partner-promocode"
-          name={referralForm.fields.promocode}
-          autoComplete="off"
-          placeholder={`${t("form.promocode")} (не обов’язково)`}
-          className={inputClass}
-        />
       </div>
 
       <label className="mt-5 flex items-start gap-3 text-xs leading-5 text-white/55">
