@@ -6,6 +6,7 @@ import {
   MapPin,
   Ruler,
   Package,
+  HardHat,
   Plug,
   Wrench,
   ShieldCheck,
