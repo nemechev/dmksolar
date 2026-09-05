@@ -12,7 +12,6 @@ import {
   ShieldCheck,
   FileCheck,
   BatteryCharging,
-  Award,
   Home as HomeIcon,
   Factory,
 } from "lucide-react";
@@ -87,8 +86,14 @@ function Home() {
           <p className="mt-5 max-w-xl text-base md:text-lg opacity-80">{t("hero.subtitle")}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              to="/calculator"
+              to="/contacts"
               className="inline-flex items-center rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110"
+            >
+              {t("cta.consult")}
+            </Link>
+            <Link
+              to="/calculator"
+              className="inline-flex items-center rounded-md border border-primary/60 px-6 py-3 text-sm font-semibold text-primary hover:bg-primary/10"
             >
               {t("cta.calc")}
             </Link>

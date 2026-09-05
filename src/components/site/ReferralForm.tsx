@@ -15,9 +15,31 @@ export function ReferralForm() {
     setState("submitting");
 
     try {
+      const formData = new FormData(form);
+      const referrerPhone = String(formData.get(referralForm.fields.referrerPhone) ?? "").trim();
+      const clientPhone = String(formData.get(referralForm.fields.clientPhone) ?? "").trim();
+      const contactData = String(formData.get(referralForm.fields.contactData) ?? "").trim();
+      const promoCode = String(formData.get(referralForm.fields.promocode) ?? "").trim();
+      const referrerName = String(formData.get(referralForm.fields.referrerName) ?? "").trim();
+      const clientName = String(formData.get(referralForm.fields.clientName) ?? "").trim();
+
+      formData.set(referralForm.fields.referrerPhone, referrerPhone || "Не вказано");
+      formData.set(referralForm.fields.clientPhone, clientPhone || "Не вказано");
+      formData.set(
+        referralForm.fields.referrerName,
+        [
+          referrerName,
+          contactData ? `Контактні дані: ${contactData}` : "",
+          promoCode ? `Промокод: ${promoCode}` : "",
+        ]
+          .filter(Boolean)
+          .join(" | "),
+      );
+      formData.set(referralForm.fields.clientName, clientName || "Партнерська заявка");
+
       await fetch(referralForm.action, {
         method: "POST",
-        body: new FormData(form),
+        body: formData,
         mode: "no-cors",
       });
 
@@ -76,13 +98,32 @@ export function ReferralForm() {
         </label>
         <input
           id="referrer-phone"
-          required
           name={referralForm.fields.referrerPhone}
           type="tel"
           inputMode="tel"
           autoComplete="tel"
           pattern="[+0-9()\s-]{10,20}"
           placeholder={t("referral.form.phone")}
+          className={inputClass}
+        />
+        <label className="sr-only" htmlFor="referrer-contact-data">
+          {t("referral.form.contact_data")}
+        </label>
+        <input
+          id="referrer-contact-data"
+          name={referralForm.fields.contactData}
+          autoComplete="off"
+          placeholder={t("referral.form.contact_data")}
+          className={inputClass}
+        />
+        <label className="sr-only" htmlFor="referrer-promocode">
+          {t("form.promocode")}
+        </label>
+        <input
+          id="referrer-promocode"
+          name={referralForm.fields.promocode}
+          autoComplete="off"
+          placeholder={t("form.promocode")}
           className={inputClass}
         />
       </fieldset>
@@ -105,7 +146,6 @@ export function ReferralForm() {
         </label>
         <input
           id="client-phone"
-          required
           name={referralForm.fields.clientPhone}
           type="tel"
           inputMode="tel"

@@ -320,6 +320,12 @@ function Calculator() {
     invalidateResult();
   };
 
+  const updatePower = (value: number) => {
+    const nextPower = Number.isFinite(value) ? value : range.min;
+    setPower(Math.min(range.max, Math.max(range.min, Math.round(nextPower))));
+    invalidateResult();
+  };
+
   const updateConsumption = (value: string) => {
     setMonthlyConsumption(value);
     const parsed = parseNumber(value);
@@ -452,15 +458,29 @@ function Calculator() {
                 step={1}
                 value={power}
                 disabled={!objectType}
-                onChange={(event) => {
-                  setPower(Number(event.target.value));
-                  invalidateResult();
-                }}
+                onChange={(event) => updatePower(Number(event.target.value))}
                 className="mt-5 w-full cursor-pointer accent-[color:var(--primary)] disabled:cursor-not-allowed disabled:opacity-40"
               />
-              <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-                <span>{formattedMinPower}</span>
-                <span>{formattedMaxPower}</span>
+              <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_180px] sm:items-end">
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>{formattedMinPower}</span>
+                  <span>{formattedMaxPower}</span>
+                </div>
+                <label className="block">
+                  <span className="mb-1 block text-xs font-semibold text-muted-foreground">
+                    {lang === "en" ? "Enter capacity manually" : "Ввести потужність вручну"}
+                  </span>
+                  <input
+                    type="number"
+                    min={range.min}
+                    max={range.max}
+                    step={1}
+                    value={power}
+                    disabled={!objectType}
+                    onChange={(event) => updatePower(Number(event.target.value))}
+                    className="h-11 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-40"
+                  />
+                </label>
               </div>
             </div>
           </StepCard>

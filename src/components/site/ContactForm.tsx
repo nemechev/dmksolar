@@ -12,9 +12,19 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
     const form = e.currentTarget;
     setLoading(true);
     try {
+      const formData = new FormData(form);
+      const promoCode = String(formData.get(contactForm.fields.promocode) ?? "").trim();
+      if (promoCode) {
+        const currentMessage = String(formData.get(contactForm.fields.message) ?? "").trim();
+        formData.set(
+          contactForm.fields.message,
+          [currentMessage, `Промокод: ${promoCode}`].filter(Boolean).join("\n"),
+        );
+      }
+
       await fetch(contactForm.action, {
         method: "POST",
-        body: new FormData(form),
+        body: formData,
         mode: "no-cors",
       });
       form.reset();
@@ -48,6 +58,11 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         type="email"
         name={contactForm.fields.email}
         placeholder={t("form.email")}
+        className="h-12 rounded-md border text-black border-border bg-background px-4 text-sm outline-none focus:border-primary"
+      />
+      <input
+        name={contactForm.fields.promocode}
+        placeholder={t("form.promocode")}
         className="h-12 rounded-md border text-black border-border bg-background px-4 text-sm outline-none focus:border-primary"
       />
       {!compact && (

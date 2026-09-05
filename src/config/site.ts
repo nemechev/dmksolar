@@ -24,6 +24,8 @@ export const referralForm = {
     referrerPhone: "entry.1804189324",
     clientName: "entry.234721406",
     clientPhone: "entry.556499779",
+    contactData: "partner_contact_data",
+    promocode: "promocode",
   },
 } as const;
 
@@ -36,5 +38,6 @@ export const contactForm = {
     phone: "entry.836021770",
     email: "entry.1666435300",
     message: "entry.421164830",
+    promocode: "promocode",
   },
 } as const;
