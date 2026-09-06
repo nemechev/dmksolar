@@ -494,7 +494,7 @@ function Calculator() {
                 onChange={(event) => updatePower(Number(event.target.value))}
                 className="mt-5 w-full cursor-pointer accent-[color:var(--primary)] disabled:cursor-not-allowed disabled:opacity-40"
               />
-              <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_180px] sm:items-end">
+              <div className="mt-4 space-y-3">
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>{formattedMinPower}</span>
                   <span>{formattedMaxPower}</span>
@@ -503,21 +503,45 @@ function Calculator() {
                   <span className="mb-1 block text-xs font-semibold text-muted-foreground">
                     {lang === "en" ? "Enter capacity manually" : "Ввести потужність вручну"}
                   </span>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    value={powerInput}
-                    disabled={!objectType}
-                    onChange={(event) => updatePowerInput(event.target.value)}
-                    onBlur={commitPowerInput}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        event.currentTarget.blur();
-                      }
-                    }}
-                    className="h-11 w-full rounded-xl border border-border bg-background px-4 text-base outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-40"
-                  />
+                  <div className="flex items-stretch overflow-hidden rounded-xl border border-border bg-background focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
+                    <button
+                      type="button"
+                      disabled={!objectType}
+                      onClick={() => updatePower(power - 1)}
+                      className="flex h-14 w-14 shrink-0 items-center justify-center border-r border-border text-2xl font-bold text-primary disabled:cursor-not-allowed disabled:opacity-40"
+                      aria-label={lang === "en" ? "Decrease capacity" : "Зменшити потужність"}
+                    >
+                      −
+                    </button>
+                    <input
+                      type="tel"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      value={powerInput}
+                      disabled={!objectType}
+                      onChange={(event) => updatePowerInput(event.target.value)}
+                      onBlur={commitPowerInput}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                          event.currentTarget.blur();
+                        }
+                      }}
+                      placeholder={String(range.min)}
+                      className="h-14 min-w-0 flex-1 bg-transparent px-4 text-center text-xl font-bold outline-none disabled:cursor-not-allowed disabled:opacity-40"
+                    />
+                    <span className="flex h-14 shrink-0 items-center border-l border-border px-3 text-sm font-semibold text-muted-foreground">
+                      {lang === "en" ? "kW" : "кВт"}
+                    </span>
+                    <button
+                      type="button"
+                      disabled={!objectType}
+                      onClick={() => updatePower(power + 1)}
+                      className="flex h-14 w-14 shrink-0 items-center justify-center border-l border-border text-2xl font-bold text-primary disabled:cursor-not-allowed disabled:opacity-40"
+                      aria-label={lang === "en" ? "Increase capacity" : "Збільшити потужність"}
+                    >
+                      +
+                    </button>
+                  </div>
                 </label>
               </div>
             </div>
