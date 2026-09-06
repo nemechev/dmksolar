@@ -94,7 +94,7 @@ const copy = {
     consultation: "Записатися на консультацію",
     resultNote:
       "Розрахунок попередній. Остаточна вартість залежить від проєкту, обладнання та умов монтажу.",
-    pricingNote: `Базові ціни прикладу: мережева — ${REFERENCE_PRICING.gridUsdPerKw} $/кВт, гібридна — ${REFERENCE_PRICING.hybridUsdPerKw} $/кВт; наземне кріплення +20%. Перерахунок: ${REFERENCE_PRICING.uahPerUsd} грн/$.`,
+    pricingNote: `Базові ціни прикладу: мережева — ${REFERENCE_PRICING.gridUsdPerKw} $/кВт, гібридна — ${REFERENCE_PRICING.hybridUsdPerKw} $/кВт; наземне кріплення +20%.`,
   },
   en: {
     eyebrow: "Solar calculator",
@@ -147,7 +147,7 @@ const copy = {
     consultation: "Book a consultation",
     resultNote:
       "This is a preliminary estimate. Final cost depends on engineering, equipment and installation conditions.",
-    pricingNote: `Reference prices: grid-tied — $${REFERENCE_PRICING.gridUsdPerKw}/kW, hybrid — $${REFERENCE_PRICING.hybridUsdPerKw}/kW; ground mounting +20%. Conversion: ${REFERENCE_PRICING.uahPerUsd} UAH/$.`,
+    pricingNote: `Reference prices: grid-tied — $${REFERENCE_PRICING.gridUsdPerKw}/kW, hybrid — $${REFERENCE_PRICING.hybridUsdPerKw}/kW; ground mounting +20%.`,
   },
 } as const;
 
