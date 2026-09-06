@@ -323,12 +323,36 @@ function Calculator() {
     invalidateResult();
   };
 
-  const updatePower = (value: number) => {
+  const clampPower = (value: number) => {
     const nextPower = Number.isFinite(value) ? value : range.min;
-    const clampedPower = Math.min(range.max, Math.max(range.min, Math.round(nextPower)));
+    return Math.min(range.max, Math.max(range.min, Math.round(nextPower)));
+  };
+
+  const updatePower = (value: number) => {
+    const clampedPower = clampPower(value);
     setPower(clampedPower);
     setPowerInput(String(clampedPower));
     invalidateResult();
+  };
+
+  const updatePowerInput = (value: string) => {
+    const nextValue = value.replace(/\D/g, "");
+    setPowerInput(nextValue);
+
+    if (!nextValue) {
+      invalidateResult();
+      return;
+    }
+
+    const parsed = Number(nextValue);
+    if (Number.isFinite(parsed) && parsed >= range.min && parsed <= range.max) {
+      setPower(Math.round(parsed));
+    }
+    invalidateResult();
+  };
+
+  const commitPowerInput = () => {
+    updatePower(Number(powerInput || range.min));
   };
 
   const updateConsumption = (value: string) => {
@@ -485,17 +509,13 @@ function Calculator() {
                     pattern="[0-9]*"
                     value={powerInput}
                     disabled={!objectType}
-                    onChange={(event) => {
-                      const nextValue = event.target.value.replace(/\D/g, "");
-                      setPowerInput(nextValue);
-                      if (nextValue) {
-                        updatePower(Number(nextValue));
-                      } else {
-                        setResult(null);
-                        setShowErrors(false);
+                    onChange={(event) => updatePowerInput(event.target.value)}
+                    onBlur={commitPowerInput}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        event.currentTarget.blur();
                       }
                     }}
-                    onBlur={() => updatePower(Number(powerInput || range.min))}
                     className="h-11 w-full rounded-xl border border-border bg-background px-4 text-base outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-40"
                   />
                 </label>
