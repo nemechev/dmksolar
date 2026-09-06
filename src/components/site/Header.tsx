@@ -20,18 +20,18 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-dark text-dark-foreground shadow-[0_10px_30px_rgba(4,18,14,0.16)]">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 xl:grid xl:h-[72px] xl:grid-cols-[auto_minmax(0,1fr)_auto] xl:gap-5 xl:px-8 2xl:max-w-[1536px]">
+      <div className="mx-auto grid h-14 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:h-16 sm:px-6 xl:h-[72px] xl:grid-cols-[auto_minmax(0,1fr)_auto] xl:gap-5 xl:px-8 2xl:max-w-[1536px]">
         <Link
           to="/"
           aria-label="DMK Solar — головна"
-          className="flex w-fit items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          className="flex min-w-0 items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
           <img
             src={logo}
             alt="DMK Solar"
             width={1330}
             height={433}
-            className="h-11 w-auto mix-blend-lighten sm:h-12"
+            className="h-auto max-h-9 w-auto max-w-[170px] mix-blend-lighten sm:max-h-11 sm:max-w-[210px] xl:max-h-12"
           />
         </Link>
 
@@ -89,14 +89,14 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex min-w-max items-center justify-end gap-2">
+        <div className="hidden min-w-max items-center justify-end gap-2 xl:flex">
           <a
             href={siteContacts.phones[0].href}
             className="hidden shrink-0 items-center gap-2 whitespace-nowrap text-sm opacity-80 transition hover:text-primary hover:opacity-100 min-[1700px]:flex"
           >
             <Phone className="w-4 h-4" /> {siteContacts.phones[0].label}
           </a>
-          <div className="hidden shrink-0 items-center gap-1 border border-white/10 bg-white/[0.04] p-1 text-xs md:flex">
+          <div className="shrink-0 items-center gap-1 border border-white/10 bg-white/[0.04] p-1 text-xs xl:flex">
             {(["ua", "en"] as Lang[]).map((l) => (
               <button
                 key={l}
