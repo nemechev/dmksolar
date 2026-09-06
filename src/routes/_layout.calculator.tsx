@@ -280,6 +280,7 @@ function Calculator() {
   const [phaseType, setPhaseType] = useState<PhaseType | null>(null);
   const [mountingType, setMountingType] = useState<MountingType | null>(null);
   const [power, setPower] = useState(5);
+  const [powerInput, setPowerInput] = useState("5");
   const [monthlyConsumption, setMonthlyConsumption] = useState("");
   const [tariff, setTariff] = useState("4,32");
   const [promoCode, setPromoCode] = useState("");
@@ -318,12 +319,15 @@ function Calculator() {
         ? recommendPower(consumptionNumber, value)
         : nextRange.min;
     setPower(suggested);
+    setPowerInput(String(suggested));
     invalidateResult();
   };
 
   const updatePower = (value: number) => {
     const nextPower = Number.isFinite(value) ? value : range.min;
-    setPower(Math.min(range.max, Math.max(range.min, Math.round(nextPower))));
+    const clampedPower = Math.min(range.max, Math.max(range.min, Math.round(nextPower)));
+    setPower(clampedPower);
+    setPowerInput(String(clampedPower));
     invalidateResult();
   };
 
@@ -331,7 +335,9 @@ function Calculator() {
     setMonthlyConsumption(value);
     const parsed = parseNumber(value);
     if (objectType && Number.isFinite(parsed) && parsed > 0) {
-      setPower(recommendPower(parsed, objectType));
+      const recommendedPower = recommendPower(parsed, objectType);
+      setPower(recommendedPower);
+      setPowerInput(String(recommendedPower));
     }
     invalidateResult();
   };
@@ -362,6 +368,7 @@ function Calculator() {
     setPhaseType(null);
     setMountingType(null);
     setPower(5);
+    setPowerInput("5");
     setMonthlyConsumption("");
     setTariff("4,32");
     setPromoCode("");
@@ -473,14 +480,23 @@ function Calculator() {
                     {lang === "en" ? "Enter capacity manually" : "Ввести потужність вручну"}
                   </span>
                   <input
-                    type="number"
-                    min={range.min}
-                    max={range.max}
-                    step={1}
-                    value={power}
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={powerInput}
                     disabled={!objectType}
-                    onChange={(event) => updatePower(Number(event.target.value))}
-                    className="h-11 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-40"
+                    onChange={(event) => {
+                      const nextValue = event.target.value.replace(/\D/g, "");
+                      setPowerInput(nextValue);
+                      if (nextValue) {
+                        updatePower(Number(nextValue));
+                      } else {
+                        setResult(null);
+                        setShowErrors(false);
+                      }
+                    }}
+                    onBlur={() => updatePower(Number(powerInput || range.min))}
+                    className="h-11 w-full rounded-xl border border-border bg-background px-4 text-base outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-40"
                   />
                 </label>
               </div>
