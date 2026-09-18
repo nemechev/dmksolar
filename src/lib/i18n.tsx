@@ -89,6 +89,9 @@ const ua: Dict = {
   "g.3.d": "Розширена гарантія від виробників інверторів.",
   "g.4.t": "Договір і документи",
   "g.4.d": "Офіційний договір, гарантійні талони, повний пакет документів.",
+  "g.5.t": "Гарантія і сервіс",
+  "g.5.d":
+    "Надаємо два роки гарантії на монтаж та два роки сервісне обслуговування і моніторинг роботи станції.",
 
   "home.partners.title": "Партнери",
   "home.partners.sub": "З ким ми працюємо",
@@ -352,6 +355,9 @@ const en: Dict = {
   "g.3.d": "Extended manufacturer warranty on inverters.",
   "g.4.t": "Contract & documents",
   "g.4.d": "Official contract, warranty cards, full paperwork.",
+  "g.5.t": "Warranty & service",
+  "g.5.d":
+    "We provide a two-year installation warranty, two years of service, and station performance monitoring.",
 
   "home.partners.title": "Partners",
   "home.partners.sub": "Who we work with",

@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_layout/partnership")({
       {
         name: "description",
         content:
-          "Партнерство з DMK SOLAR: винагорода від 2% вартості реалізованого проєкту, накопичувальна система та персональні промокоди.",
+          "Партнерство з DMK SOLAR: винагорода від 5% вартості реалізованого проєкту, накопичувальна система та персональні промокоди.",
       },
     ],
   }),
@@ -108,7 +108,7 @@ function Partnership() {
             <p>
               Наш партнер отримує{" "}
               <strong className="text-foreground">
-                мінімум 2% від загальної вартості реалізованого проєкту
+                мінімум 5% від загальної вартості реалізованого проєкту
               </strong>
               , який був залучений за його участі.
             </p>
@@ -141,18 +141,18 @@ function Partnership() {
             <p className="text-2xl font-bold text-foreground">1 000 000 грн</p>
             <p>
               При мінімальній партнерській винагороді{" "}
-              <strong className="text-foreground">2%</strong>:
+              <strong className="text-foreground">5%</strong>:
             </p>
-            <p className="text-xl font-bold text-primary">1 000 000 × 2% = 20 000 грн</p>
+            <p className="text-xl font-bold text-primary">1 000 000 × 5% = 50 000 грн</p>
             <p>
               Отже, партнер отримує{" "}
-              <strong className="text-foreground">20 000 грн винагороди</strong> за цей проєкт.
+              <strong className="text-foreground">50 000 грн винагороди</strong> за цей проєкт.
             </p>
             <p>
               Якщо завдяки накопичувальній системі партнер отримує, наприклад,
-              <strong className="text-foreground"> 4%</strong>, його винагорода становитиме:
+              <strong className="text-foreground"> 7%</strong>, його винагорода становитиме:
             </p>
-            <p className="text-xl font-bold text-primary">1 000 000 × 4% = 40 000 грн</p>
+            <p className="text-xl font-bold text-primary">1 000 000 × 7% = 70 000 грн</p>
             <p>
               Таким чином, активні партнери мають можливість збільшувати свою винагороду завдяки
               залученню більшої кількості клієнтів.
@@ -220,7 +220,7 @@ function Partnership() {
               ))}
             </ul>
             <p className="text-lg font-bold text-foreground">
-              Стартова партнерська винагорода — від 2% вартості проєкту.
+              Стартова партнерська винагорода — від 5% вартості проєкту.
             </p>
             <p>
               При активній співпраці та залученні більшої кількості клієнтів партнер може перейти на

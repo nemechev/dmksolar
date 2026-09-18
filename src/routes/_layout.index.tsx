@@ -57,6 +57,7 @@ function Home() {
     { i: ShieldCheck, tk: "g.1.t", dk: "g.1.d" },
     { i: BatteryCharging, tk: "g.3.t", dk: "g.3.d" },
     { i: FileCheck, tk: "g.4.t", dk: "g.4.d" },
+    { i: Wrench, tk: "g.5.t", dk: "g.5.d" },
   ];
 
   return (
