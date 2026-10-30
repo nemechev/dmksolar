@@ -8,13 +8,9 @@ import abazivkaCanopyPanels from "@/assets/abazivka-canopy-panels.jpg";
 import abazivkaInverterBattery from "@/assets/abazivka-inverter-battery.jpg";
 import house from "@/assets/house-solar.jpg";
 import install from "@/assets/install-team.jpg";
-import homeProjectExterior from "@/assets/home-project-exterior.jpg";
-import homeStorageMain from "@/assets/home-storage-main.png";
-import homeProjectInteriorConnections from "@/assets/home-project-interior-connections.jpg";
-import homeProjectInteriorFront from "@/assets/home-project-interior-front.jpg";
-import homeProjectInteriorLabel from "@/assets/home-project-interior-label.jpg";
-import homeProjectInteriorWide from "@/assets/home-project-interior-wide.jpg";
-import homeProjectVideoPoster from "@/assets/home-project-video-poster.jpg";
+import smartStorageSystemMain from "@/assets/smart-storage-system-main.jpg";
+import smartStorageSystemWide from "@/assets/smart-storage-system-wide.jpg";
+import smartStorageSystemCloseup from "@/assets/smart-storage-system-closeup.jpg";
 import homePoltava595Cover from "@/assets/home-poltava-595-cover.jpg";
 import homePoltava595Roof1 from "@/assets/home-poltava-595-roof-1.jpg";
 import homePoltava595Roof2 from "@/assets/home-poltava-595-roof-2.jpg";
@@ -32,6 +28,8 @@ export type ProjectMetric = {
 
 export type ProjectResult = { label: string; value: string };
 
+export type ProjectVideo = { src: string; poster?: string };
+
 export type Project = {
   slug: string;
   title: string;
@@ -45,6 +43,7 @@ export type Project = {
   gallery: string[];
   video?: string;
   videoPoster?: string;
+  additionalVideos?: ProjectVideo[];
   intro: string;
   description: string[];
   features: string[];
@@ -66,6 +65,7 @@ type ProjectValues = {
   gallery?: string[];
   video?: string;
   videoPoster?: string;
+  additionalVideos?: ProjectVideo[];
 };
 
 const createProject = (
@@ -87,6 +87,7 @@ const createProject = (
   gallery: values.gallery ?? [base.image, install, house, business],
   video: values.video,
   videoPoster: values.videoPoster,
+  additionalVideos: values.additionalVideos,
   intro: values.intro,
   description: values.description,
   features: values.features ?? [
@@ -155,6 +156,8 @@ export const homeProjects: Project[] = [
         abazivkaCanopyPanels,
         abazivkaInverterBattery,
       ],
+      video: "/media/abazivka-project-tour.mp4",
+      videoPoster: abazivkaCanopyExterior,
       results: [
         { value: "5,58 кВт", label: "потужність по фотоелектричних модулях" },
         { value: "9 ФЕМ", label: "сонячних модулів по 620 Вт" },
@@ -246,7 +249,7 @@ export const businessProjects: Project[] = [
       locationEn: "Poltava, Poltava region",
       type: "SSS для кав’ярні",
       category: "business",
-      image: homeStorageMain,
+      image: smartStorageSystemMain,
     },
     {
       inverter: "12 кВт",
@@ -272,13 +275,12 @@ export const businessProjects: Project[] = [
         { label: "Резерв при навантаженні 1 кВт", value: "від 15 год", kind: "backup" },
       ],
       gallery: [
-        homeStorageMain,
-        homeProjectInteriorFront,
-        homeProjectInteriorConnections,
-        homeProjectInteriorLabel,
+        smartStorageSystemMain,
+        smartStorageSystemWide,
+        smartStorageSystemCloseup,
       ],
-      video: "/media/home-project-tour.mp4",
-      videoPoster: homeProjectVideoPoster,
+      video: "/media/smart-storage-system-poltava.mp4",
+      videoPoster: smartStorageSystemWide,
       results: [
         { value: "16 кВт·год", label: "ємність акумуляторного блоку" },
         { value: "12 кВт", label: "потужність гібридного інвертора" },

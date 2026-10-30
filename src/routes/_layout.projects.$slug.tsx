@@ -82,6 +82,10 @@ function ProjectPortfolio() {
   const project = localizeProject(rawProject, lang);
   const process = processCopy[lang];
   const c = pageCopy[lang];
+  const videos = [
+    ...(project.video ? [{ src: project.video, poster: project.videoPoster }] : []),
+    ...(project.additionalVideos ?? []),
+  ];
 
   return (
     <article className="bg-dark text-dark-foreground">
@@ -240,20 +244,23 @@ function ProjectPortfolio() {
                 />
               </figure>
             ))}
-            {project.video && (
-              <figure className="overflow-hidden bg-[#071a14] sm:col-span-2 lg:col-span-2 lg:row-span-2">
+            {videos.map((video, index) => (
+              <figure
+                key={video.src}
+                className="overflow-hidden bg-[#071a14] sm:col-span-2 lg:col-span-2 lg:row-span-2"
+              >
                 <video
                   controls
                   playsInline
                   preload="metadata"
-                  poster={project.videoPoster}
+                  poster={video.poster}
                   className="h-full w-full object-cover object-center fullscreen:bg-black fullscreen:object-contain"
-                  aria-label={c.video}
+                  aria-label={`${c.video} ${index + 1}`}
                 >
-                  <source src={project.video} type="video/mp4" />
+                  <source src={video.src} type="video/mp4" />
                 </video>
               </figure>
-            )}
+            ))}
           </div>
         </div>
       </section>
