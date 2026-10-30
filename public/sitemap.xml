@@ -50,7 +50,13 @@
   </url>
   <url>
     <loc>https://dmksolar.com/projects/smart-storage-system-poltava</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dmksolar.com/projects/home-solar-5-58-abazivka</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

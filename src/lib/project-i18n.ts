@@ -14,6 +14,38 @@ type LocalizedProject = Project & {
 };
 
 const translations: Record<string, Partial<LocalizedProject>> = {
+  "home-solar-5-58-abazivka": {
+    displayTitle: "Solar power plant",
+    displayType: "Private house",
+    displayLocation: "Abazivka, Poltava region",
+    displayIntro:
+      "Hybrid solar power plant for a private house with a battery system and backup power during blackouts.",
+    displayDescription: [
+      "The site is a private house in Abazivka, Poltava region. System type: a 6 kW hybrid solar power plant with a 12 kWh battery designed to provide backup power during blackouts.",
+      "The photovoltaic modules are installed on a purpose-designed canopy built by our team. The structure was engineered for solar panel installation and has a 15° tilt. The system operates without connection to the green tariff.",
+      "Backup power reserve is at least 10 hours with a 1 kW load. To preserve battery life, backup power is not supplied when the charge drops below 10%. Full battery charging time depends on weather conditions and the site’s electricity consumption.",
+    ],
+    displayFeatures: [
+      "Full autonomy for a private house during blackouts",
+      "9 photovoltaic modules rated at 620 W each",
+      "Canopy-mounted modules at a 15° tilt",
+      "Operation without connection to the green tariff",
+    ],
+    displayMetrics: [
+      { label: "Plant capacity", value: "5.58 kW", kind: "power" },
+      { label: "Hybrid inverter", value: "6 kW", kind: "inverter" },
+      { label: "PV modules", value: "9", kind: "panels" },
+      { label: "Panel power", value: "620 W", kind: "panels" },
+      { label: "Battery capacity", value: "12 kWh", kind: "battery" },
+      { label: "Backup at 1 kW load", value: "from 10 h", kind: "backup" },
+    ],
+    displayResults: [
+      { value: "5.58 kW", label: "photovoltaic module capacity" },
+      { value: "9 PV modules", label: "solar modules rated at 620 W" },
+      { value: "6 kW", label: "hybrid inverter capacity" },
+      { value: "from 10 h", label: "backup power at 1 kW load" },
+    ],
+  },
   "home-solar-5-95-poltava": {
     displayTitle: "Solar power plant",
     displayType: "Private house",
@@ -48,12 +80,12 @@ const translations: Record<string, Partial<LocalizedProject>> = {
   },
   "smart-storage-system-poltava": {
     displayTitle: "Smart Storage System",
-    displayType: "SSS for an apartment",
+    displayType: "SSS for a coffee shop",
     displayLocation: "Poltava, Poltava region",
     displayIntro:
-      "Intelligent energy storage and management system for uninterrupted apartment power supply.",
+      "Intelligent energy storage and management system for uninterrupted power supply to a coffee shop.",
     displayDescription: [
-      "The site is an apartment in Poltava. System type: SSS (Smart Storage System). A 6 kW hybrid inverter and a 5 kWh battery block were installed.",
+      "The site is a coffee shop in Poltava. System type: SSS (Smart Storage System). A 12 kW hybrid inverter and a 16 kWh battery block were installed.",
       "SSS works as a backup source during grid outages or as a full alternative to centralized power supply. The system can later be expanded with photovoltaic modules.",
     ],
     displayFeatures: [
@@ -63,15 +95,15 @@ const translations: Record<string, Partial<LocalizedProject>> = {
       "Ready for future solar module expansion",
     ],
     displayMetrics: [
-      { label: "Battery capacity", value: "5 kWh", kind: "battery" },
-      { label: "Hybrid inverter", value: "6 kW", kind: "inverter" },
-      { label: "Backup at 1 kW load", value: "from 5 h", kind: "backup" },
+      { label: "Battery capacity", value: "16 kWh", kind: "battery" },
+      { label: "Hybrid inverter", value: "12 kW", kind: "inverter" },
+      { label: "Backup at 1 kW load", value: "from 15 h", kind: "backup" },
     ],
     displayResults: [
-      { value: "5 kWh", label: "battery block capacity" },
-      { value: "6 kW", label: "hybrid inverter capacity" },
-      { value: "from 5 h", label: "backup at 1 kW load" },
-      { value: "SSS", label: "energy independence and stability for home" },
+      { value: "16 kWh", label: "battery block capacity" },
+      { value: "12 kW", label: "hybrid inverter capacity" },
+      { value: "from 15 h", label: "backup at 1 kW load" },
+      { value: "SSS", label: "energy independence and stability for business" },
     ],
   },
   "agro-59-52-cherkasy": {

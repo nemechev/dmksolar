@@ -2,6 +2,10 @@ import business from "@/assets/business-solar.jpg";
 import businessProjectExterior from "@/assets/business-project-exterior.jpg";
 import businessProjectRoof from "@/assets/business-project-roof.jpg";
 import businessProjectVideoPoster from "@/assets/business-project-video-poster.jpg";
+import abazivkaCanopyUnder from "@/assets/abazivka-canopy-under.jpg";
+import abazivkaCanopyExterior from "@/assets/abazivka-canopy-exterior.jpg";
+import abazivkaCanopyPanels from "@/assets/abazivka-canopy-panels.jpg";
+import abazivkaInverterBattery from "@/assets/abazivka-inverter-battery.jpg";
 import house from "@/assets/house-solar.jpg";
 import install from "@/assets/install-team.jpg";
 import homeProjectExterior from "@/assets/home-project-exterior.jpg";
@@ -174,27 +178,86 @@ export const homeProjects: Project[] = [
       ],
     },
   ),
+];
+
+export const businessProjects: Project[] = [
+  createProject(
+    {
+      slug: "home-solar-5-58-abazivka",
+      title: "Сонячна електростанція",
+      cardSubtitle: "5,58 кВт",
+      location: "с. Абазівка, Полтавська область",
+      locationEn: "Abazivka, Poltava region",
+      type: "Приватний будинок",
+      category: "business",
+      image: abazivkaCanopyExterior,
+    },
+    {
+      inverter: "6 кВт",
+      panels: "9 шт. × 620 Вт",
+      battery: "12 кВт·год",
+      backup: "від 10 год при 1 кВт",
+      generation: "5,58 кВт потужність ФЕМ",
+      intro:
+        "Гібридна сонячна електростанція для приватного будинку з акумуляторною батареєю та резервним живленням під час блекаутів.",
+      description: [
+        "Об’єкт — приватний будинок у селі Абазівка Полтавської області. Тип системи: гібридна сонячна електростанція потужністю 6 кВт з акумуляторною батареєю ємністю 12 кВт·год, призначена для забезпечення резервного електропостачання будинку під час блекаутів.",
+        "Фотоелектричні модулі встановлені на спеціально спроєктованому та виготовленому нашою командою навісі. Конструкцію реалізовано з урахуванням особливостей монтажу сонячних панелей, а кут її нахилу становить 15°. Система працює без підключення до механізму «зеленого» тарифу.",
+        "Запас резервного енергопостачання — не менше 10 год при навантаженні 1 кВт. Для довготривалого використання АКБ при досягненні заряду менше 10% резервне живлення не подається. Час повної зарядки АКБ залежить від погодних умов та споживання електроенергії об’єктом.",
+      ],
+      features: [
+        "Повна автономність приватного будинку у випадку блекаутів",
+        "9 фотоелектричних модулів потужністю 620 Вт",
+        "Розміщення модулів на спеціальному навісі під кутом 15°",
+        "Робота без підключення до зеленого тарифу",
+      ],
+      metrics: [
+        { label: "Потужність СЕС", value: "5,58 кВт", kind: "power" },
+        { label: "Гібридний інвертор", value: "6 кВт", kind: "inverter" },
+        { label: "Кількість ФЕМ", value: "9", kind: "panels" },
+        { label: "Потужність панелі", value: "620 Вт", kind: "panels" },
+        { label: "Ємність АКБ", value: "12 кВт·год", kind: "battery" },
+        {
+          label: "Резерв при навантаженні 1 кВт",
+          value: "від 10 год",
+          kind: "backup",
+        },
+      ],
+      gallery: [
+        abazivkaCanopyExterior,
+        abazivkaCanopyUnder,
+        abazivkaCanopyPanels,
+        abazivkaInverterBattery,
+      ],
+      results: [
+        { value: "5,58 кВт", label: "потужність по фотоелектричних модулях" },
+        { value: "9 ФЕМ", label: "сонячних модулів по 620 Вт" },
+        { value: "6 кВт", label: "потужність гібридного інвертора" },
+        { value: "від 10 год", label: "резервного живлення при 1 кВт" },
+      ],
+    },
+  ),
   createProject(
     {
       slug: "smart-storage-system-poltava",
       title: "Smart Storage System",
-      cardSubtitle: "5 кВт",
+      cardSubtitle: "12 кВт",
       location: "м. Полтава, Полтавська область",
       locationEn: "Poltava, Poltava region",
-      type: "SSS для квартири",
-      category: "home",
+      type: "SSS для кав’ярні",
+      category: "business",
       image: homeStorageMain,
     },
     {
-      inverter: "6 кВт",
+      inverter: "12 кВт",
       panels: "можливе підключення",
-      battery: "5 кВт·год",
-      backup: "від 5 год при 1 кВт",
+      battery: "16 кВт·год",
+      backup: "від 15 год при 1 кВт",
       generation: "система накопичення",
       intro:
-        "Інтелектуальна система накопичення та керування енергією для безперебійного електроживлення квартири.",
+        "Інтелектуальна система накопичення та керування енергією для безперебійного електроживлення кав’ярні.",
       description: [
-        "Об’єкт — квартира у місті Полтава. Тип системи: SSS (Smart Storage System). Встановлено гібридний інвертор потужністю 6 кВт та акумуляторний блок ємністю 5 кВт·год.",
+        "Об’єкт — кав’ярня у місті Полтава. Тип системи: SSS (Smart Storage System). Встановлено гібридний інвертор потужністю 12 кВт та акумуляторний блок ємністю 16 кВт·год.",
         "SSS працює як резервне джерело під час відключень мережі або як повноцінна альтернатива централізованому енергопостачанню. Систему можна надалі розширити фотоелектричними модулями.",
       ],
       features: [
@@ -204,9 +267,9 @@ export const homeProjects: Project[] = [
         "Можливість подальшого додавання сонячних модулів",
       ],
       metrics: [
-        { label: "Ємність АКБ", value: "5 кВт·год", kind: "battery" },
-        { label: "Гібридний інвертор", value: "6 кВт", kind: "inverter" },
-        { label: "Резерв при навантаженні 1 кВт", value: "від 5 год", kind: "backup" },
+        { label: "Ємність АКБ", value: "16 кВт·год", kind: "battery" },
+        { label: "Гібридний інвертор", value: "12 кВт", kind: "inverter" },
+        { label: "Резерв при навантаженні 1 кВт", value: "від 15 год", kind: "backup" },
       ],
       gallery: [
         homeStorageMain,
@@ -217,16 +280,13 @@ export const homeProjects: Project[] = [
       video: "/media/home-project-tour.mp4",
       videoPoster: homeProjectVideoPoster,
       results: [
-        { value: "5 кВт·год", label: "ємність акумуляторного блоку" },
-        { value: "6 кВт", label: "потужність гібридного інвертора" },
-        { value: "від 5 год", label: "резерву при навантаженні 1 кВт" },
-        { value: "SSS", label: "енергонезалежність і стабільність для дому" },
+        { value: "16 кВт·год", label: "ємність акумуляторного блоку" },
+        { value: "12 кВт", label: "потужність гібридного інвертора" },
+        { value: "від 15 год", label: "резерву при навантаженні 1 кВт" },
+        { value: "SSS", label: "енергонезалежність і стабільність для бізнесу" },
       ],
     },
   ),
-];
-
-export const businessProjects: Project[] = [
   createProject(
     {
       slug: "agro-59-52-cherkasy",
